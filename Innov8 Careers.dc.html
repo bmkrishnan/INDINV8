@@ -339,13 +339,15 @@ class Component extends DCLogic {
       this.setState({ applySubmitting: false, applySubmitError: true });
     }
   };
-  TANYA_SYSTEM_PROMPT = "You are Tanya, the Ind Innov8 assistant. Loading full context...";
+  TANYA_SYSTEM_PROMPT = "Tanya is starting up - one moment...";
 
-  async componentDidMount() {
-    try {
-      const mod = await import('./tanya-prompt.js');
+  componentDidMount() {
+    this.tanyaReadyPromise = import('./tanya-prompt.js').then((mod) => {
+      if (!mod || !mod.TANYA_SYSTEM_PROMPT) throw new Error('tanya-prompt.js loaded but export missing');
       this.TANYA_SYSTEM_PROMPT = mod.TANYA_SYSTEM_PROMPT;
-    } catch (e) { /* keep fallback prompt */ }
+    }).catch((e) => {
+      console.error('Tanya failed to load her knowledge from ./tanya-prompt.js — check the file was deployed:', e);
+    });
   }
 
   handleSubmit = async (e) => {
@@ -385,6 +387,7 @@ class Component extends DCLogic {
     e.preventDefault();
     const question = (presetText || this.state.chatInput).trim();
     if (!question) return;
+    if (this.tanyaReadyPromise) await this.tanyaReadyPromise;
     const userMsg = { text: question, align: 'flex-end', bg: '#8B5CF6', color: '#fff' };
     const apiHistory = [...(this.state.apiHistory || []), { role: 'user', content: question }];
     this.setState(s => ({ chatMessages: [...s.chatMessages, userMsg], chatInput: '', chatLoading: true, apiHistory }));
