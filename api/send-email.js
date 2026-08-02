@@ -8,7 +8,7 @@ const RATE_LIMIT_MAX = 5; // max requests per IP per window
 const rateLimitStore = new Map(); // best-effort only — resets on cold start
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const MAX_LEN = { name: 100, company: 100, organisation: 100, email: 150, phone: 30, intent: 30, message: 3000 };
+const MAX_LEN = { name: 100, company: 100, organisation: 100, email: 150, phone: 30, intent: 30, message: 3000, notes: 500 };
 
 function clean(str, max) {
   if (str == null) return '';
@@ -70,6 +70,7 @@ export default async function handler(req, res) {
     const organisation = clean(body.organisation, MAX_LEN.organisation);
     const phone = clean(body.phone, MAX_LEN.phone);
     const intent = clean(body.intent, MAX_LEN.intent);
+    const notes = clean(body.notes, MAX_LEN.notes);
     const message = clean(body.message, MAX_LEN.message);
 
     if (!name) {
@@ -101,6 +102,7 @@ export default async function handler(req, res) {
         <p><b>Email:</b> ${escapeHtml(email)}</p>
         <p><b>Phone:</b> ${escapeHtml(phone)}</p>
         <p><b>Intent:</b> ${escapeHtml(intent || 'unspecified')}</p>
+        <p><b>What they're looking for:</b> ${escapeHtml(notes || 'Not captured — check chat transcript if available.')}</p>
         <p style="color:#888; font-size:13px;">Captured via Tanya on ind.innov8-labs.in</p>
       `
       : `
