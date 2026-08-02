@@ -222,12 +222,13 @@ class Component extends DCLogic {
     const question = (presetText || this.state.chatInput).trim();
     if (!question) return;
     const userMsg = { text: question, align: 'flex-end', bg: '#8B5CF6', color: '#fff' };
-    this.setState(s => ({ chatMessages: [...s.chatMessages, userMsg], chatInput: '', chatLoading: true }));
+    const apiHistory = [...(this.state.apiHistory || []), { role: 'user', content: question }];
+    this.setState(s => ({ chatMessages: [...s.chatMessages, userMsg], chatInput: '', chatLoading: true, apiHistory }));
     try {
       const apiResp = await fetch('/api/tanya-chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ system: this.TANYA_SYSTEM_PROMPT, message: question, maxTokens: 110 })
+        body: JSON.stringify({ system: this.TANYA_SYSTEM_PROMPT, messages: apiHistory, maxTokens: 110 })
       });
       if (!apiResp.ok) throw new Error('chat api failed');
       const { reply } = await apiResp.json();
@@ -235,7 +236,8 @@ class Component extends DCLogic {
       let clean = reply, m, newLead = { ...this.state.leadInfo };
       while ((m = markerRe.exec(reply)) !== null) newLead[m[1]] = m[2].trim();
       clean = clean.replace(markerRe, '').trim();
-      this.setState(s => ({ chatMessages: [...s.chatMessages, { text: clean, align: 'flex-start', bg: '#F1EEFB', color: '#171224' }], chatLoading: false, leadInfo: newLead }));
+      const newHistory = [...apiHistory, { role: 'assistant', content: clean }];
+      this.setState(s => ({ chatMessages: [...s.chatMessages, { text: clean, align: 'flex-start', bg: '#F1EEFB', color: '#171224' }], chatLoading: false, leadInfo: newLead, apiHistory: newHistory }));
       if (newLead.name && newLead.company && newLead.email && newLead.phone && !this.state.leadSent) {
         this.sendLeadEmail(newLead);
       }
