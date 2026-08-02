@@ -95,12 +95,12 @@
         <p style="font-size:13.5px; line-height:1.6; color:rgba(255,255,255,0.55); margin:0;">Hybrid by default from our Chennai base, with remote flexibility for the right role.</p>
       </div>
       <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:16px; padding:24px;">
-        <div style="color:#fff; font-size:15px; font-weight:600; margin-bottom:8px;">Equity for early team</div>
-        <p style="font-size:13.5px; line-height:1.6; color:rgba(255,255,255,0.55); margin:0;">Meaningful ownership for the people who help us build the company, not just the product.</p>
-      </div>
-      <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:16px; padding:24px;">
         <div style="color:#fff; font-size:15px; font-weight:600; margin-bottom:8px;">Learning budget</div>
         <p style="font-size:13.5px; line-height:1.6; color:rgba(255,255,255,0.55); margin:0;">Support for courses, certifications, and conferences relevant to your work.</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:16px; padding:24px;">
+        <div style="color:#fff; font-size:15px; font-weight:600; margin-bottom:8px;">Regional exposure</div>
+        <p style="font-size:13.5px; line-height:1.6; color:rgba(255,255,255,0.55); margin:0;">Based on the role, travel across India and ASEAN markets for client and partner engagements.</p>
       </div>
     </div>
   </div>
@@ -118,11 +118,11 @@
             <div style="font-size:16.5px; font-weight:600; color:#171224; margin-bottom:6px;">{{ r.title }}</div>
             <div style="font-size:13.5px; color:#6B6480;">{{ r.team }} · {{ r.location }}</div>
           </div>
-          <a href="#contact" style="flex-shrink:0; padding:11px 20px; border-radius:10px; background:#171224; color:#fff; font-size:13.5px; font-weight:600;">Apply</a>
+          <div onClick="{{ r.onApply }}" style="flex-shrink:0; padding:11px 20px; border-radius:10px; background:#171224; color:#fff; font-size:13.5px; font-weight:600; cursor:pointer;">Apply</div>
         </div>
       </sc-for>
     </div>
-    <p style="text-align:center; font-size:14.5px; color:#6B6480; margin:32px 0 0;">Don't see a fit? <a href="#contact" style="color:#6D28D9; font-weight:600;">Write to us anyway</a> — we're always looking for the right people.</p>
+    <p style="text-align:center; font-size:14.5px; color:#6B6480; margin:32px 0 0;">Don't see a fit? <span onClick="{{ openApplyGeneral }}" style="color:#6D28D9; font-weight:600; cursor:pointer;">Write to us anyway</span> — we're always looking for the right people.</p>
   </div>
 
   <!-- CONTACT -->
@@ -182,6 +182,48 @@
     </div>
   </div>
 
+  <!-- APPLY MODAL -->
+  <sc-if value="{{ applyOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeApply }}" style="position:fixed; inset:0; background:rgba(10,10,18,0.7); z-index:200; display:flex; align-items:center; justify-content:center; padding:20px;">
+      <div onClick="{{ stopPropagation }}" style="background:#171224; border:1px solid rgba(255,255,255,0.1); border-radius:22px; padding:36px; width:100%; max-width:440px; max-height:90vh; overflow-y:auto;">
+        <sc-if value="{{ applySubmitted }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:30px 0;">
+            <div style="width:56px; height:56px; border-radius:50%; background:linear-gradient(135deg,#8B5CF6,#6D28D9); display:flex; align-items:center; justify-content:center; margin-bottom:20px; font-size:24px;">✓</div>
+            <div style="color:#fff; font-size:19px; font-weight:600; margin-bottom:8px;">Application sent!</div>
+            <div style="color:rgba(255,255,255,0.6); font-size:14.5px; margin-bottom:24px;">Thanks for applying — we'll review and reach out if there's a fit.</div>
+            <div onClick="{{ closeApply }}" style="padding:12px 24px; border-radius:10px; background:rgba(255,255,255,0.08); color:#fff; font-size:14px; font-weight:600; cursor:pointer;">Close</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ applyNotSubmitted }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
+            <div style="color:#A78BFA; font-size:12.5px; font-weight:700; letter-spacing:1px; text-transform:uppercase;">Apply</div>
+            <span onClick="{{ closeApply }}" style="color:rgba(255,255,255,0.5); cursor:pointer; font-size:18px;">✕</span>
+          </div>
+          <h3 style="color:#fff; font-size:20px; font-weight:600; margin:0 0 22px;">{{ applyRoleTitle }}</h3>
+          <form onSubmit="{{ handleApplySubmit }}" style="display:flex; flex-direction:column; gap:14px;">
+            <div>
+              <input type="text" name="name" placeholder="Full name" value="{{ applyName }}" onChange="{{ handleApplyNameChange }}" style="width:100%; box-sizing:border-box; padding:14px 16px; border-radius:11px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:#fff; font-size:14.5px; font-family:'Poppins',sans-serif;" />
+              <sc-if value="{{ applyNameError }}" hint-placeholder-val="{{ false }}"><div style="color:#FCA5A5; font-size:12.5px; margin-top:5px;">{{ applyNameError }}</div></sc-if>
+            </div>
+            <div>
+              <input type="email" name="email" placeholder="Email" value="{{ applyEmail }}" onChange="{{ handleApplyEmailChange }}" style="width:100%; box-sizing:border-box; padding:14px 16px; border-radius:11px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:#fff; font-size:14.5px; font-family:'Poppins',sans-serif;" />
+              <sc-if value="{{ applyEmailError }}" hint-placeholder-val="{{ false }}"><div style="color:#FCA5A5; font-size:12.5px; margin-top:5px;">{{ applyEmailError }}</div></sc-if>
+            </div>
+            <div>
+              <label style="display:block; font-size:12.5px; color:rgba(255,255,255,0.5); margin-bottom:7px;">CV (PDF, DOC, or DOCX — max 5MB)</label>
+              <input type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" onChange="{{ handleApplyFileChange }}" style="width:100%; box-sizing:border-box; color:rgba(255,255,255,0.75); font-size:13px; font-family:'Poppins',sans-serif;" />
+              <sc-if value="{{ applyFileName }}" hint-placeholder-val="{{ false }}"><div style="color:rgba(255,255,255,0.5); font-size:12.5px; margin-top:5px;">Selected: {{ applyFileName }}</div></sc-if>
+              <sc-if value="{{ applyFileError }}" hint-placeholder-val="{{ false }}"><div style="color:#FCA5A5; font-size:12.5px; margin-top:5px;">{{ applyFileError }}</div></sc-if>
+            </div>
+            <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;" onChange="{{ handleApplyHoneypotChange }}" />
+            <sc-if value="{{ applySubmitError }}" hint-placeholder-val="{{ false }}"><div style="color:#FCA5A5; font-size:13px;">Couldn't send automatically — please email founders@innov8-labs.in directly.</div></sc-if>
+            <button type="submit" disabled="{{ applySubmitting }}" style="margin-top:6px; padding:15px; border:none; border-radius:11px; background:linear-gradient(135deg,#8B5CF6,#6D28D9); color:#fff; font-size:15px; font-weight:600; cursor:pointer; font-family:'Poppins',sans-serif;">{{ applySubmitLabel }}</button>
+          </form>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
+
   <!-- FLOATING TANYA -->
   <div style="position:fixed; bottom:28px; right:28px; z-index:100;">
     <sc-if value="{{ tanyaOpen }}" hint-placeholder-val="{{ false }}">
@@ -228,9 +270,83 @@ class Component extends DCLogic {
   state = {
     submitted: false, productsOpen: false, tanyaOpen: false, chatInput: '', chatLoading: false,
     chatMessages: [{ text: "Hi, I'm Tanya, the Ind Innov8 assistant. Ask me about our services, Drillx, or how to get in touch.", align: 'flex-start', bg: '#F1EEFB', color: '#171224' }],
-    leadInfo: {}
+    leadInfo: {},
+    applyOpen: false, applyRoleTitle: '', applyName: '', applyEmail: '', applyFile: null, applyFileName: '',
+    applyNameError: '', applyEmailError: '', applyFileError: '', applySubmitting: false, applySubmitted: false, applySubmitError: false, applyHoneypot: ''
   };
-  TANYA_SYSTEM_PROMPT = "You are Tanya, Ind Innov8's website assistant (ind.innov8-labs.in), India's DPIIT-recognised R&D and AI engineering hub serving ASEAN, based in Chennai. STRICT REPLY RULES: answer the visitor's actual question directly in the FIRST sentence - no throat-clearing, no restating their question, no filler like 'Great question!'. Maximum 30 words total, 2 short sentences max. Never trail off mid-sentence. Never ask more than one question per reply. Stay strictly on topic - if asked something unrelated to Ind Innov8, say briefly that you can only help with Ind Innov8 questions. FULL KNOWLEDGE OF THE SITE: MISSION - make AI adoption real not theoretical, we build with AI ourselves before advising others. VISION - be the trusted AI and cyber engineering partner for ASEAN. SERVICES: (1) Product Engineering - full-cycle AI-native builds, architecture, ML integration, cloud/security engineering, proven via Drillx; engagement model is Scope -> Build -> Operate. (2) AI Journey - research-led AI adoption roadmaps, readiness assessments, pilots for ASEAN enterprises. PRODUCTS: Drillx is our flagship - an AI-powered cyber tabletop exercise platform for regulated orgs (banks, fintechs/NBFCs, insurers, GCCs, government, enterprise security teams) to design/run/score/improve cyber crisis drills. Built on two engines: Scenario Recommendation Engine (industry & country-specific scenarios) and Reporting Engine (audit-ready, ISO 27001/NIST CSF aligned), plus SOP-grounded AI scoring against the client's own playbooks. Drillx is MVP stage today running as a managed PaaS with design partners, moving next to self-serve SaaS, and we're raising to fund engineering, certifications and GTM. Site: drillx.innov8-labs.in. WHY INDIA: R&D at the core, expert-led development, applied AI not theory, DPIIT registered, DSCI member, AWS Activate member. REGIONAL MODEL - 3 markets 1 team: India (engineering, R&D & subject matter experts hub), Singapore (regional partnerships & business growth), Brunei (market development & academic partnerships incl. UBD, NTU). LEADERSHIP: Muthukrishnan Balasundaram - Founder & CEO (product strategy, regional operations, partnerships); Radha Vattappan - Co-Founder & COO (programme management, delivery, operations); Gopal Ramachandran - CFO (finance, compliance); Sanskriti Grover - Platform Lead (platform building, POVs, demos). CAREERS: hiring engineers, AI/ML engineers, security researchers, AI advisory consultants; benefits include direct access to leadership, flexible hybrid work from Chennai, equity for early team, and a learning budget. YOUR JOB: silently figure out what the visitor is (investor, prospective customer/pilot partner, job candidate, or general/press) and tailor your pitch: investors get traction, MVP stage, the ask, and why now; customers get product fit for their sector and a demo offer; candidates get open roles and culture; others get a general overview. Once they show real interest (wants a demo, wants to invest, wants to apply, wants a follow-up call), ask clear consent in your own words: would it be okay to take a few details for the team to follow up. Only after they agree, collect ONE AT A TIME: full name, company/organisation, email, phone - confirm each back briefly. After capturing any field, silently append a hidden marker at the very end of your reply, exact form [LEAD:field=value] where field is name/company/email/phone/intent (intent = investor/customer/candidate/other, capture this first once inferred). NEVER show or mention the marker. Once name, company, email and phone are captured, thank them briefly and say the right team member will reach out soon.";
+  ALLOWED_CV_EXT = ['.pdf', '.doc', '.docx'];
+  MAX_CV_BYTES = 5 * 1024 * 1024;
+
+  openApply = (roleTitle) => this.setState({
+    applyOpen: true, applyRoleTitle: roleTitle, applyName: '', applyEmail: '', applyFile: null, applyFileName: '',
+    applyNameError: '', applyEmailError: '', applyFileError: '', applySubmitting: false, applySubmitted: false, applySubmitError: false, applyHoneypot: ''
+  });
+  closeApply = () => this.setState({ applyOpen: false });
+  openApplyGeneral = () => this.openApply('General application');
+  stopPropagation = (e) => e.stopPropagation();
+  handleApplyNameChange = (e) => this.setState({ applyName: e.target.value, applyNameError: '' });
+  handleApplyEmailChange = (e) => this.setState({ applyEmail: e.target.value, applyEmailError: '' });
+  handleApplyHoneypotChange = (e) => this.setState({ applyHoneypot: e.target.value });
+  handleApplyFileChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) { this.setState({ applyFile: null, applyFileName: '', applyFileError: '' }); return; }
+    const ext = ('.' + (file.name.split('.').pop() || '')).toLowerCase();
+    if (!this.ALLOWED_CV_EXT.includes(ext)) {
+      this.setState({ applyFile: null, applyFileName: '', applyFileError: 'File must be a PDF, DOC, or DOCX.' });
+      return;
+    }
+    if (file.size > this.MAX_CV_BYTES) {
+      this.setState({ applyFile: null, applyFileName: '', applyFileError: 'File must be under 5MB.' });
+      return;
+    }
+    this.setState({ applyFile: file, applyFileName: file.name, applyFileError: '' });
+  };
+  readFileAsBase64 = (file) => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+  handleApplySubmit = async (e) => {
+    e.preventDefault();
+    const name = this.state.applyName.trim();
+    const email = this.state.applyEmail.trim();
+    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    let nameError = '', emailError = '', fileError = '';
+    if (!name) nameError = 'Please enter your name.';
+    if (!email || !EMAIL_RE.test(email)) emailError = 'Please enter a valid email.';
+    if (!this.state.applyFile) fileError = 'Please attach your CV (PDF, DOC, or DOCX).';
+    if (nameError || emailError || fileError) {
+      this.setState({ applyNameError: nameError, applyEmailError: emailError, applyFileError: fileError || this.state.applyFileError });
+      return;
+    }
+    if (this.state.applyHoneypot) { this.setState({ applySubmitted: true }); return; } // silently "succeed" for bots
+    this.setState({ applySubmitting: true, applySubmitError: false });
+    try {
+      const fileBase64 = await this.readFileAsBase64(this.state.applyFile);
+      const resp = await fetch('/api/apply-job', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name, email, role: this.state.applyRoleTitle,
+          filename: this.state.applyFile.name, fileMime: this.state.applyFile.type, fileBase64,
+          website: this.state.applyHoneypot
+        })
+      });
+      if (!resp.ok) throw new Error('send failed');
+      this.setState({ applySubmitted: true, applySubmitting: false });
+    } catch (err) {
+      this.setState({ applySubmitting: false, applySubmitError: true });
+    }
+  };
+  TANYA_SYSTEM_PROMPT = "You are Tanya, the Ind Innov8 assistant. Loading full context...";
+
+  async componentDidMount() {
+    try {
+      const mod = await import('./tanya-prompt.js');
+      this.TANYA_SYSTEM_PROMPT = mod.TANYA_SYSTEM_PROMPT;
+    } catch (e) { /* keep fallback prompt */ }
+  }
 
   handleSubmit = async (e) => {
     e.preventDefault();
@@ -325,12 +441,32 @@ class Component extends DCLogic {
       showQuickReplies: this.state.chatMessages.length === 1,
       quickReplies: this.QUICK_REPLIES.map(label => ({ label, onClick: () => this.sendQuickReply(label) })),
       leadSent: this.state.leadSent,
+      applyOpen: this.state.applyOpen,
+      applyRoleTitle: this.state.applyRoleTitle,
+      applyNotSubmitted: !this.state.applySubmitted,
+      applySubmitted: this.state.applySubmitted,
+      applySubmitting: this.state.applySubmitting,
+      applySubmitError: this.state.applySubmitError,
+      applySubmitLabel: this.state.applySubmitting ? 'Sending…' : 'Submit application',
+      applyName: this.state.applyName,
+      applyEmail: this.state.applyEmail,
+      applyFileName: this.state.applyFileName,
+      applyNameError: this.state.applyNameError,
+      applyEmailError: this.state.applyEmailError,
+      applyFileError: this.state.applyFileError,
+      closeApply: this.closeApply,
+      openApplyGeneral: this.openApplyGeneral,
+      stopPropagation: this.stopPropagation,
+      handleApplySubmit: this.handleApplySubmit,
+      handleApplyNameChange: this.handleApplyNameChange,
+      handleApplyEmailChange: this.handleApplyEmailChange,
+      handleApplyFileChange: this.handleApplyFileChange,
+      handleApplyHoneypotChange: this.handleApplyHoneypotChange,
       roles: [
         { title: 'Senior Full-Stack Engineer', team: 'Product Engineering', location: 'Chennai · Hybrid' },
         { title: 'AI/ML Engineer', team: 'Product Engineering', location: 'Chennai · Hybrid' },
-        { title: 'Security Researcher', team: 'Drillx', location: 'Chennai · Hybrid' },
         { title: 'AI Advisory Consultant', team: 'AI Journey', location: 'Chennai / Remote · ASEAN travel' }
-      ]
+      ].map(r => ({ ...r, onApply: () => this.openApply(r.title) }))
     };
   }
 }
