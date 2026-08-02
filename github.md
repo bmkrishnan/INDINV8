@@ -11,7 +11,7 @@ commit: (repo currently empty — no commits yet)
 ## Screen map
 | Project screen | Repo files |
 |---|---|
-| Home | Innov8 Homepage.dc.html |
+| Home | Home.html |
 | Services | Innov8 Services.dc.html |
 | Products | Innov8 Products.dc.html |
 | About | Innov8 About.dc.html |

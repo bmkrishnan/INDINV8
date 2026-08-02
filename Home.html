@@ -10,10 +10,14 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
 <style>
   body { margin:0; font-family:'Poppins',sans-serif; background:#0A0A12; }
   a { color:#8B5CF6; text-decoration:none; }
   a:hover { color:#A78BFA; }
+  @keyframes floatSlow { 0%,100%{ transform:translateY(0px) rotate(0deg);} 50%{ transform:translateY(-18px) rotate(4deg);} }
+  @keyframes pulseGlow { 0%,100%{ opacity:0.5;} 50%{ opacity:1;} }
+  @keyframes fadeUp { from{ opacity:0; transform:translateY(24px);} to{ opacity:1; transform:translateY(0);} }
 </style>
 </helmet>
 
@@ -21,12 +25,11 @@
 
   <!-- NAV -->
   <div style="position:fixed; top:0; left:0; right:0; z-index:50; display:flex; align-items:center; justify-content:space-between; padding:22px 56px; background:rgba(10,10,18,0.85); backdrop-filter:blur(14px); border-bottom:1px solid rgba(255,255,255,0.08);">
-    <a href="Home.html" style="display:flex; align-items:center; gap:10px;">
+    <a href="Innov8 Homepage.dc.html" style="display:flex; align-items:center; gap:10px;">
       <img src="assets/innov8-logo.png" alt="Ind Innov8" style="height:30px; width:auto;" />
     </a>
     <div style="display:flex; align-items:center; gap:36px;">
-      <a href="Home.html" style="color:rgba(255,255,255,0.75); font-size:15px; font-weight:500;">Home</a>
-      <span style="color:#fff; font-size:15px; font-weight:600;">Services</span>
+      <a href="Innov8 Services.dc.html" style="color:rgba(255,255,255,0.75); font-size:15px; font-weight:500;">Services</a>
       <div style="position:relative;" onMouseEnter="{{ openProducts }}" onMouseLeave="{{ closeProducts }}">
         <a href="Innov8 Products.dc.html" style="color:rgba(255,255,255,0.75); font-size:15px; font-weight:500; display:flex; align-items:center; gap:6px;">Products
           <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -52,69 +55,106 @@
   </div>
   <div style="height:76px;"></div>
 
-  <!-- HEADER -->
-  <div style="padding:56px 56px 76px;">
-    <div style="max-width:700px;">
-      <div style="color:#A78BFA; font-size:13px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:14px;">Services</div>
-      <h1 style="font-family:'Space Grotesk',sans-serif; font-size:42px; color:#fff; font-weight:700; margin:0 0 18px; line-height:1.2; letter-spacing:-0.5px;">Two disciplines, one engineering core</h1>
-      <p style="font-size:17px; line-height:1.7; color:rgba(255,255,255,0.6); margin:0;">We build software with AI built in, and we help enterprises across the ASEAN region plan their own path to AI adoption.</p>
+  <!-- HERO -->
+  <div style="position:relative; padding:96px 56px 120px; display:flex; align-items:center; justify-content:space-between; gap:60px; overflow:hidden;">
+    <div style="position:absolute; top:-160px; right:-140px; width:560px; height:560px; border-radius:50%; background:radial-gradient(circle at 30% 30%, rgba(139,92,246,0.35), rgba(139,92,246,0) 70%); filter:blur(10px); animation:pulseGlow 6s ease-in-out infinite;"></div>
+    <div style="position:absolute; bottom:-200px; left:10%; width:480px; height:480px; border-radius:50%; background:radial-gradient(circle at 50% 50%, rgba(109,40,217,0.28), rgba(109,40,217,0) 70%); filter:blur(20px);"></div>
+    <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px); background-size:64px 64px; mask-image:radial-gradient(ellipse 70% 60% at 50% 30%, black, transparent);"></div>
+
+    <div style="position:relative; max-width:640px; z-index:2; animation:fadeUp 0.9s ease both;">
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:28px; flex-wrap:wrap;">
+        <div style="display:inline-flex; align-items:center; gap:8px; padding:7px 16px; border-radius:999px; background:rgba(139,92,246,0.12); border:1px solid rgba(139,92,246,0.35); color:#C4B5FD; font-size:13px; font-weight:600;">
+          <span style="width:7px; height:7px; border-radius:50%; background:#A78BFA;"></span> India's R&D & AI engineering hub for ASEAN
+        </div>
+      </div>
+      <h1 style="font-family:'Space Grotesk',sans-serif; font-size:54px; line-height:1.1; font-weight:700; color:#fff; margin:0 0 26px; letter-spacing:-1px;">Research, engineering, and expertise — out of India, for ASEAN.</h1>
+      <p style="font-size:18px; line-height:1.65; color:rgba(255,255,255,0.65); margin:0 0 40px; max-width:560px;">Ind Innov8 is India's R&D and AI engineering hub — where applied research becomes shipped software, proven first in cyber security with Drillx, our cyber drill platform. We pair that depth with hands-on subject-matter expertise, helping enterprises across the ASEAN region plan and ship real AI adoption, not slide decks.</p>
+      <div style="display:flex; gap:16px;">
+        <a href="#contact" style="padding:16px 30px; background:linear-gradient(135deg,#8B5CF6,#6D28D9); border-radius:12px; color:#fff; font-size:15px; font-weight:600; box-shadow:0 8px 30px rgba(139,92,246,0.4);">Talk to our team</a>
+        <a href="Innov8 Services.dc.html" style="padding:16px 30px; border-radius:12px; border:1px solid rgba(255,255,255,0.18); color:#fff; font-size:15px; font-weight:600;">What we do</a>
+      </div>
+    </div>
+
+    <div style="position:relative; z-index:2; width:420px; height:420px; flex-shrink:0; animation:fadeUp 1s ease 0.15s both; border-radius:28px; overflow:hidden;">
+      <image-slot id="hero-image" shape="rounded" radius="28" placeholder="Drop a hero image (1600x1200, India-ASEAN theme)"></image-slot>
     </div>
   </div>
 
-  <!-- SERVICES DETAIL -->
-  <div style="padding:0 56px 96px; display:flex; flex-direction:column; gap:24px; max-width:1100px; margin:0 auto;">
-    <sc-for list="{{ services }}" as="s" hint-placeholder-count="2">
-      <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:24px; padding:44px; display:flex; gap:48px; align-items:flex-start;">
-        <div style="flex:1;">
-          <div style="font-family:'Space Grotesk',sans-serif; font-size:13px; font-weight:700; color:#8B5CF6; letter-spacing:1px; text-transform:uppercase; margin-bottom:16px;">{{ s.tag }}</div>
-          <h2 style="color:#fff; font-size:26px; font-weight:600; margin:0 0 14px;">{{ s.title }}</h2>
-          <p style="font-size:16px; line-height:1.75; color:rgba(255,255,255,0.65); margin:0;">{{ s.desc }}</p>
-        </div>
-        <div style="flex:1; display:flex; flex-direction:column; gap:12px;">
-          <sc-for list="{{ s.points }}" as="pt" hint-placeholder-count="3">
-            <div style="display:flex; gap:12px; align-items:flex-start;">
-              <div style="width:6px; height:6px; border-radius:50%; background:#8B5CF6; margin-top:8px; flex-shrink:0;"></div>
-              <div style="font-size:14.5px; line-height:1.6; color:rgba(255,255,255,0.6);">{{ pt }}</div>
-            </div>
-          </sc-for>
-        </div>
-      </div>
-    </sc-for>
+  <!-- TRACTION STRIP -->
+  <div style="padding:20px 56px; background:#171224; border-top:1px solid rgba(255,255,255,0.08); border-bottom:1px solid rgba(255,255,255,0.08); overflow-x:auto;">
+    <div style="max-width:1100px; margin:0 auto; display:flex; align-items:center; justify-content:center; gap:28px; white-space:nowrap;">
+      <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.55); font-size:13.5px; font-weight:500;"><span style="width:6px; height:6px; border-radius:50%; background:#A78BFA; flex-shrink:0;"></span>DPIIT registered</div>
+      <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.55); font-size:13.5px; font-weight:500;"><span style="width:6px; height:6px; border-radius:50%; background:#A78BFA; flex-shrink:0;"></span>DSCI member</div>
+      <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.55); font-size:13.5px; font-weight:500;"><span style="width:6px; height:6px; border-radius:50%; background:#A78BFA; flex-shrink:0;"></span>AWS Activate member</div>
+      <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.55); font-size:13.5px; font-weight:500;"><span style="width:6px; height:6px; border-radius:50%; background:#A78BFA; flex-shrink:0;"></span>Drillx MVP is active</div>
+      <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.55); font-size:13.5px; font-weight:500;"><span style="width:6px; height:6px; border-radius:50%; background:#A78BFA; flex-shrink:0;"></span>POV & demo ready</div>
+      <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.55); font-size:13.5px; font-weight:500;"><span style="width:6px; height:6px; border-radius:50%; background:#A78BFA; flex-shrink:0;"></span>Open to funding & investment</div>
+    </div>
   </div>
 
-  <!-- ENGAGEMENT MODEL -->
-  <div style="background:#F7F5FB; padding:80px 56px;">
+  <!-- EXPLORE STRIP -->
+  <div style="padding:64px 56px 96px;">
     <div style="max-width:700px; margin:0 auto 40px; text-align:center;">
-      <div style="color:#6D28D9; font-size:13px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:14px;">How we engage</div>
-      <h2 style="font-family:'Space Grotesk',sans-serif; font-size:32px; color:#171224; font-weight:600; margin:0; line-height:1.35;">From first conversation to running system</h2>
+      <div style="color:#A78BFA; font-size:13px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:14px;">Explore</div>
+      <h2 style="font-family:'Space Grotesk',sans-serif; font-size:30px; color:#fff; font-weight:600; margin:0; line-height:1.35;">Get to know Ind Innov8</h2>
+      <p style="font-size:14px; color:rgba(255,255,255,0.5); margin:14px 0 0; font-weight:500; line-height:1.6; max-width:520px; margin-left:auto; margin-right:auto;">Every product and service here is built by our own AI and cyber security experts. No outsourced engineering, no third-party black boxes.</p>
     </div>
     <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px; max-width:1100px; margin:0 auto;">
-      <div style="background:#fff; border-radius:20px; padding:32px; box-shadow:0 10px 32px rgba(23,18,36,0.05); border:1px solid rgba(23,18,36,0.05);">
-        <div style="font-family:'Space Grotesk',sans-serif; font-size:13px; font-weight:700; color:#8B5CF6; margin-bottom:14px;">01 · Scope</div>
-        <h3 style="font-size:18px; font-weight:600; color:#171224; margin:0 0 10px;">A working session, not a proposal</h3>
-        <p style="font-size:14px; line-height:1.6; color:#6B6480; margin:0;">We sit with your team to map the system or the AI opportunity in concrete terms — architecture, data, constraints, and what success looks like in weeks, not quarters.</p>
+      <a href="Innov8 Services.dc.html" style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:20px; padding:32px; display:block;">
+        <div style="color:#A78BFA; font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:10px;">Services</div>
+        <div style="color:#fff; font-size:18px; font-weight:600; margin-bottom:8px;">Product engineering & AI Journey</div>
+        <p style="font-size:14px; line-height:1.6; color:rgba(255,255,255,0.55); margin:0;">How we build, and how we help you adopt AI.</p>
+      </a>
+      <a href="Innov8 Products.dc.html" style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:20px; padding:32px; display:block;">
+        <div style="color:#A78BFA; font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:10px;">Products</div>
+        <div style="color:#fff; font-size:18px; font-weight:600; margin-bottom:8px;">Drillx</div>
+        <p style="font-size:14px; line-height:1.6; color:rgba(255,255,255,0.55); margin:0;">Our engineering, shipped as products.</p>
+      </a>
+      <a href="Innov8 About.dc.html" style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:20px; padding:32px; display:block;">
+        <div style="color:#A78BFA; font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:10px;">About</div>
+        <div style="color:#fff; font-size:18px; font-weight:600; margin-bottom:8px;">Our company & team</div>
+        <p style="font-size:14px; line-height:1.6; color:rgba(255,255,255,0.55); margin:0;">Who we are, and the people behind Ind Innov8.</p>
+      </a>
+    </div>
+  </div>
+
+  <!-- WHY INDIA -->
+  <div style="background:#F7F5FB; padding:80px 56px;">
+    <div style="max-width:1100px; margin:0 auto; display:flex; gap:64px; align-items:center;">
+      <div style="flex:1;">
+        <div style="color:#6D28D9; font-size:13px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:14px;">Why India</div>
+        <h2 style="font-family:'Space Grotesk',sans-serif; font-size:30px; color:#171224; font-weight:600; margin:0 0 18px; line-height:1.35;">India's engineering depth, built for ASEAN's pace</h2>
+        <p style="font-size:16px; line-height:1.75; color:#4B4560; margin:0;">India gives us deep, cost-effective engineering and research talent; ASEAN gives us the fastest-growing digital economies needing that expertise. Ind Innov8 sits at that intersection — R&D and product engineering out of Chennai, delivered with regional context through affiliated entities in Singapore and Brunei.</p>
       </div>
-      <div style="background:#fff; border-radius:20px; padding:32px; box-shadow:0 10px 32px rgba(23,18,36,0.05); border:1px solid rgba(23,18,36,0.05);">
-        <div style="font-family:'Space Grotesk',sans-serif; font-size:13px; font-weight:700; color:#8B5CF6; margin-bottom:14px;">02 · Build</div>
-        <h3 style="font-size:18px; font-weight:600; color:#171224; margin:0 0 10px;">A running system, or a piloted roadmap</h3>
-        <p style="font-size:14px; line-height:1.6; color:#6B6480; margin:0;">Engineering engagements ship production code in sprints with visible progress; advisory engagements test the roadmap against a live pilot — never a static slide deck.</p>
-      </div>
-      <div style="background:#fff; border-radius:20px; padding:32px; box-shadow:0 10px 32px rgba(23,18,36,0.05); border:1px solid rgba(23,18,36,0.05);">
-        <div style="font-family:'Space Grotesk',sans-serif; font-size:13px; font-weight:700; color:#8B5CF6; margin-bottom:14px;">03 · Operate</div>
-        <h3 style="font-size:18px; font-weight:600; color:#171224; margin:0 0 10px;">We stay on as it scales</h3>
-        <p style="font-size:14px; line-height:1.6; color:#6B6480; margin:0;">Post-launch, we keep engineering and advisory continuity — hardening the system, extending capability, and adjusting the roadmap as your organisation's needs grow.</p>
+      <div style="flex:1; display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <div style="background:#fff; border-radius:16px; padding:24px; box-shadow:0 8px 24px rgba(23,18,36,0.05); border:1px solid rgba(23,18,36,0.05);">
+          <div style="font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700; color:#8B5CF6; margin-bottom:6px;">Deep talent pool</div>
+          <div style="font-size:13.5px; color:#6B6480; line-height:1.5;">India's large, skilled engineering and research workforce</div>
+        </div>
+        <div style="background:#fff; border-radius:16px; padding:24px; box-shadow:0 8px 24px rgba(23,18,36,0.05); border:1px solid rgba(23,18,36,0.05);">
+          <div style="font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700; color:#8B5CF6; margin-bottom:6px;">Cost efficiency</div>
+          <div style="font-size:13.5px; color:#6B6480; line-height:1.5;">Enterprise-grade engineering at a fraction of Western cost</div>
+        </div>
+        <div style="background:#fff; border-radius:16px; padding:24px; box-shadow:0 8px 24px rgba(23,18,36,0.05); border:1px solid rgba(23,18,36,0.05);">
+          <div style="font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700; color:#8B5CF6; margin-bottom:6px;">Time-zone overlap</div>
+          <div style="font-size:13.5px; color:#6B6480; line-height:1.5;">Convenient working hours alignment across the ASEAN region</div>
+        </div>
+        <div style="background:#fff; border-radius:16px; padding:24px; box-shadow:0 8px 24px rgba(23,18,36,0.05); border:1px solid rgba(23,18,36,0.05);">
+          <div style="font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700; color:#8B5CF6; margin-bottom:6px;">Growing ecosystem</div>
+          <div style="font-size:13.5px; color:#6B6480; line-height:1.5;">A maturing tech and regulatory environment backing serious builders</div>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- CONTACT -->
-  <div id="contact" style="background:#0A0A12; padding:96px 56px; position:relative; overflow:hidden; border-top:1px solid rgba(255,255,255,0.08);">
+  <div id="contact" style="background:#0A0A12; padding:96px 56px; position:relative; overflow:hidden;">
     <div style="position:absolute; bottom:-200px; right:-100px; width:600px; height:600px; border-radius:50%; background:radial-gradient(circle, rgba(139,92,246,0.2), transparent 70%);"></div>
     <div style="max-width:1200px; margin:0 auto; display:flex; gap:80px; position:relative;">
       <div style="flex:1;">
         <div style="color:#A78BFA; font-size:13px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:14px;">Get in touch</div>
-        <h2 style="font-family:'Space Grotesk',sans-serif; font-size:38px; color:#fff; font-weight:600; margin:0 0 22px; line-height:1.25;">Let's talk about your roadmap.</h2>
-        <p style="font-size:17px; line-height:1.75; color:rgba(255,255,255,0.6); margin:0 0 40px; max-width:440px;">For product engineering engagements, AI advisory, or pilot conversations — reach out and our team will get back to you.</p>
+        <h2 style="font-family:'Space Grotesk',sans-serif; font-size:38px; color:#fff; font-weight:600; margin:0 0 22px; line-height:1.25;">Let's build something resilient.</h2>
+        <p style="font-size:17px; line-height:1.75; color:rgba(255,255,255,0.6); margin:0 0 40px; max-width:440px;">For product briefings, pilot partnerships, investment conversations, AI advisory, or ecosystem collaboration — reach out and our team will get back to you.</p>
         <div style="display:flex; flex-direction:column; gap:18px;">
           <div style="color:rgba(255,255,255,0.75); font-size:15px;"><strong style="color:#fff;">Address</strong><br>192/3, Sakthi Nagar Main Road, Arumbakkam, Chennai 600 106, Tamil Nadu, India</div>
           <div style="color:rgba(255,255,255,0.75); font-size:15px;"><strong style="color:#fff;">Phone</strong><br>+91 978 979 4149</div>
@@ -150,7 +190,7 @@
     <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; gap:40px; flex-wrap:wrap; margin-bottom:32px;">
       <img src="assets/innov8-logo.png" alt="Ind Innov8" style="height:26px; width:auto;" />
       <div style="display:flex; gap:40px; flex-wrap:wrap;">
-        <a href="Home.html" style="color:rgba(255,255,255,0.55); font-size:14px;">Home</a>
+        <a href="Innov8 Services.dc.html" style="color:rgba(255,255,255,0.55); font-size:14px;">Services</a>
         <a href="Innov8 Products.dc.html" style="color:rgba(255,255,255,0.55); font-size:14px;">Products</a>
         <a href="Innov8 About.dc.html" style="color:rgba(255,255,255,0.55); font-size:14px;">About</a>
         <a href="Innov8 Careers.dc.html" style="color:rgba(255,255,255,0.55); font-size:14px;">Careers</a>
@@ -200,11 +240,12 @@
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   state = {
-    submitted: false, submitting: false, submitError: false, productsOpen: false, tanyaOpen: false, chatInput: '', chatLoading: false,
-    chatMessages: [{ text: "Hi, I'm Tanya, the Ind Innov8 assistant. Ask me about our services, Drillx, or how to get in touch.", align: 'flex-start', bg: '#F1EEFB', color: '#171224' }],
-    leadInfo: {}, leadSent: false
+    submitted: false, submitting: false, submitError: false, productsOpen: false, tanyaOpen: false, chatInput: '', chatLoading: false, leadInfo: {}, leadSent: false,
+    chatMessages: [{ text: "Hi, I'm Tanya, the Ind Innov8 assistant. Ask me about our services, Drillx, or how to get in touch.", align: 'flex-start', bg: '#F1EEFB', color: '#171224' }]
   };
   TANYA_SYSTEM_PROMPT = "You are Tanya, AI assistant for Ind Innov8 (ind.innov8-labs.in), India's DPIIT-recognised R&D and AI engineering hub serving ASEAN, based in Chennai. ALWAYS reply in under 30 words - be extremely concise, and always finish your sentence (never trail off mid-thought). FULL KNOWLEDGE OF THE SITE: MISSION - make AI adoption real not theoretical, we build with AI ourselves before advising others. VISION - be the trusted AI and cyber engineering partner for ASEAN. SERVICES: (1) Product Engineering - full-cycle AI-native builds, architecture, ML integration, cloud/security engineering, proven via Drillx; engagement model is Scope -> Build -> Operate. (2) AI Journey - research-led AI adoption roadmaps, readiness assessments, pilots for ASEAN enterprises. PRODUCTS: Drillx is our flagship - an AI-powered cyber tabletop exercise platform for regulated orgs (banks, fintechs/NBFCs, insurers, GCCs, government, enterprise security teams) to design/run/score/improve cyber crisis drills. Built on two engines: Scenario Recommendation Engine (industry & country-specific scenarios) and Reporting Engine (audit-ready, ISO 27001/NIST CSF aligned), plus SOP-grounded AI scoring against the client's own playbooks. Drillx is MVP stage today running as a managed PaaS with design partners, moving next to self-serve SaaS, and we're raising to fund engineering, certifications and GTM. Site: drillx.innov8-labs.in. WHY INDIA: R&D at the core, expert-led development, applied AI not theory, DPIIT registered, DSCI member, AWS Activate member. REGIONAL MODEL - 3 markets 1 team: India (engineering, R&D & subject matter experts hub), Singapore (regional partnerships & business growth), Brunei (market development & academic partnerships incl. UBD, NTU). LEADERSHIP: Muthukrishnan Balasundaram - Founder & CEO (product strategy, regional operations, partnerships); Radha Vattappan - Co-Founder & COO (programme management, delivery, operations); Gopal Ramachandran - CFO (finance, compliance); Sanskriti Grover - Platform Lead (platform building, POVs, demos). CAREERS: hiring engineers, AI/ML engineers, security researchers, AI advisory consultants; benefits include direct access to leadership, flexible hybrid work from Chennai, equity for early team, and a learning budget. YOUR JOB: silently figure out what the visitor is (investor, prospective customer/pilot partner, job candidate, or general/press) and tailor your pitch: investors get traction, MVP stage, the ask, and why now; customers get product fit for their sector and a demo offer; candidates get open roles and culture; others get a general overview. Once they show real interest (wants a demo, wants to invest, wants to apply, wants a follow-up call), ask clear consent: 'Would it be okay to grab a few details so our team can follow up?'. Only after they agree, collect ONE AT A TIME: full name, company/organisation, email, phone - confirm each back naturally. After capturing any field, silently append a hidden marker at the very end of your reply, exact form [LEAD:field=value] where field is name/company/email/phone/intent (intent = investor/customer/candidate/other, capture this first once inferred). NEVER show or mention the marker. Once name, company, email and phone are captured, thank them warmly and say the right team member will reach out soon.";
+  toggleTanya = () => this.setState(s => ({ tanyaOpen: !s.tanyaOpen }));
+  closeTanya = () => this.setState({ tanyaOpen: false });
 
   handleSubmit = async (e) => {
     e.preventDefault();
@@ -230,8 +271,6 @@ class Component extends DCLogic {
   };
   openProducts = () => this.setState({ productsOpen: true });
   closeProducts = () => this.setState({ productsOpen: false });
-  toggleTanya = () => this.setState(s => ({ tanyaOpen: !s.tanyaOpen }));
-  closeTanya = () => this.setState({ tanyaOpen: false });
   handleChatChange = (e) => this.setState({ chatInput: e.target.value });
 
   sendChat = async (e) => {
@@ -290,33 +329,7 @@ class Component extends DCLogic {
       chatInput: this.state.chatInput,
       handleChatChange: this.handleChatChange,
       sendChat: this.sendChat,
-      leadSent: this.state.leadSent,
-      services: [
-        {
-          tag: 'Product engineering',
-          title: 'AI-native software, built to ship',
-          desc: 'We design and build production-grade software with AI woven into the core architecture, from data pipelines to interfaces — not a chatbot bolted on top. Our founding proof point is Drillx, our cyber drill platform, engineered from the ground up as an AI-assisted system.',
-          points: [
-            'Product architecture and systems design for AI-native applications',
-            'AI/ML model integration — from off-the-shelf APIs to fine-tuned pipelines',
-            'Cloud infrastructure, security engineering, and data architecture',
-            'Full-cycle delivery: discovery, design, build, and deployment',
-            'Proven in a regulated, high-stakes domain: cyber resilience'
-          ]
-        },
-        {
-          tag: 'AI Journey',
-          title: 'Research-led AI roadmaps for ASEAN enterprises',
-          desc: 'Hands-on consulting to help organisations across the ASEAN region build practical AI roadmaps and adopt AI responsibly — backed by real engineering, not slideware. We work alongside your team from first assessment through to a running pilot.',
-          points: [
-            'AI readiness assessment — where you stand, and where the opportunity is',
-            'Practical roadmaps tailored to your organisation, sector, and regulatory context',
-            'Pilot design and implementation, not just a strategy document',
-            'Change enablement — helping teams adopt and trust AI-assisted workflows',
-            'Delivered in collaboration with affiliated Innov8 entities in Singapore and Brunei'
-          ]
-        }
-      ]
+      leadSent: this.state.leadSent
     };
   }
 }
