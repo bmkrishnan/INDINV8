@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  body { margin:0; font-family:'Poppins',sans-serif; background:#0A0A12; }
+  a { color:#8B5CF6; text-decoration:none; }
+  a:hover { color:#A78BFA; }
+  @keyframes floatSlow { 0%,100%{ transform:translateY(0px) rotate(0deg);} 50%{ transform:translateY(-18px) rotate(4deg);} }
+  @keyframes floatSlow2 { 0%,100%{ transform:translateY(0px) rotate(0deg);} 50%{ transform:translateY(14px) rotate(-3deg);} }
+</style>
+</helmet>
+
+<div style="background:#0A0A12; min-height:100vh; overflow-x:hidden;">
+
+  <!-- NAV -->
+  <div style="position:fixed; top:0; left:0; right:0; z-index:50; display:flex; align-items:center; justify-content:space-between; padding:22px 56px; background:rgba(10,10,18,0.85); backdrop-filter:blur(14px); border-bottom:1px solid rgba(255,255,255,0.08);">
+    <a href="Innov8 Homepage.dc.html" style="display:flex; align-items:center; gap:10px;">
+      <img src="assets/innov8-logo.png" alt="Ind Innov8" style="height:30px; width:auto;" />
+    </a>
+    <div style="display:flex; align-items:center; gap:36px;">
+      <a href="Innov8 Homepage.dc.html" style="color:rgba(255,255,255,0.75); font-size:15px; font-weight:500;">Home</a>
+      <a href="Innov8 Services.dc.html" style="color:rgba(255,255,255,0.75); font-size:15px; font-weight:500;">Services</a>
+      <div style="position:relative;" onMouseEnter="{{ openProducts }}" onMouseLeave="{{ closeProducts }}">
+        <a href="Innov8 Products.dc.html" style="color:rgba(255,255,255,0.75); font-size:15px; font-weight:500; display:flex; align-items:center; gap:6px;">Products
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <sc-if value="{{ productsOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute; top:100%; left:-8px; padding-top:14px; width:230px;">
+            <div style="background:#171224; border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:10px; box-shadow:0 20px 50px rgba(0,0,0,0.4);">
+              <a href="Innov8 Drillx.dc.html" style="display:flex; align-items:center; gap:12px; padding:12px; border-radius:10px;" style-hover="{{ hoverBg }}">
+                <img src="assets/drillx-logo.png" alt="Drillx" style="height:16px; width:auto;" />
+                <div>
+                  <div style="color:#fff; font-size:14px; font-weight:600;">Drillx</div>
+                  <div style="color:rgba(255,255,255,0.45); font-size:12px;">Cyber drill platform</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+      <span style="color:#fff; font-size:15px; font-weight:600;">About</span>
+      <a href="Innov8 Careers.dc.html" style="color:rgba(255,255,255,0.75); font-size:15px; font-weight:500;">Careers</a>
+      <a href="#contact" style="padding:11px 22px; background:linear-gradient(135deg,#8B5CF6,#6D28D9); border-radius:999px; color:#fff; font-size:14px; font-weight:600; box-shadow:0 4px 20px rgba(139,92,246,0.35);">Get in touch</a>
+    </div>
+  </div>
+  <div style="height:76px;"></div>
+
+  <!-- ABOUT -->
+  <div style="background:#0A0A12; padding:76px 56px 90px; display:flex; align-items:center; gap:72px;">
+    <div style="flex:1;">
+      <div style="color:#A78BFA; font-size:13px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:14px;">About Ind Innov8</div>
+      <h1 style="font-family:'Space Grotesk',sans-serif; font-size:38px; color:#fff; font-weight:600; margin:0 0 22px; line-height:1.25;">India's hub for research, development, and expertise.</h1>
+      <p style="font-size:17px; line-height:1.75; color:rgba(255,255,255,0.65); margin:0 0 18px;">Ind Innov8 Private Limited is an India-based, <strong style="color:#fff;">DPIIT-recognised</strong> technology company. We exist to turn applied research into shipped software — engineering AI-native products from day one, not bolting AI on afterward.</p>
+      <p style="font-size:17px; line-height:1.75; color:rgba(255,255,255,0.65); margin:0 0 28px;">Cyber security is our proving ground: Drillx, our cyber drill platform, is where that research and engineering discipline meets a real, unsolved problem. Alongside our own products, our subject-matter experts work directly with enterprises across the ASEAN region to design AI roadmaps and adopt AI responsibly, in collaboration with affiliated Innov8 entities in Singapore and Brunei.</p>
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <a href="#contact" style="display:inline-block; padding:15px 28px; background:linear-gradient(135deg,#8B5CF6,#6D28D9); border-radius:12px; color:#fff; font-size:15px; font-weight:600;">Know more</a>
+        <div style="display:inline-flex; align-items:center; gap:8px; padding:15px 22px; border-radius:12px; border:1px solid rgba(255,255,255,0.15); color:rgba(255,255,255,0.7); font-size:14px; font-weight:600;">DPIIT Recognised · Startup India</div>
+      </div>
+    </div>
+    <div style="flex:1; height:380px; border-radius:28px; overflow:hidden;">
+      <image-slot id="about-hero-image" shape="rounded" radius="28" placeholder="Drop a photo of India/ASEAN team or office"></image-slot>
+    </div>
+  </div>
+
+  <!-- MISSION -->
+  <div style="background:#0A0A12; padding:0 56px 90px;">
+    <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start; margin-bottom:56px;">
+      <div>
+        <div style="color:#A78BFA; font-size:13px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:14px;">Our vision</div>
+        <h2 style="font-family:'Space Grotesk',sans-serif; font-size:28px; color:#fff; font-weight:600; margin:0 0 18px; line-height:1.4;">India as the trusted AI and cyber engineering partner for ASEAN.</h2>
+        <p style="font-size:15.5px; line-height:1.75; color:rgba(255,255,255,0.6); margin:0;">We want Ind Innov8 to be the name enterprises across the region call first when they need AI adopted responsibly and cyber resilience built in — not bought off a shelf.</p>
+      </div>
+      <div>
+        <div style="color:#A78BFA; font-size:13px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:14px;">Our mission</div>
+        <h2 style="font-family:'Space Grotesk',sans-serif; font-size:28px; color:#fff; font-weight:600; margin:0 0 18px; line-height:1.4;">Make AI adoption real, not theoretical.</h2>
+        <p style="font-size:15.5px; line-height:1.75; color:rgba(255,255,255,0.6); margin:0;">Most companies talk about AI strategy. We think the only credible way to advise on it is to build with it ourselves — so every roadmap we hand a client is grounded in something we've actually shipped, tested, and hardened under real constraints.</p>
+      </div>
+    </div>
+    <div style="max-width:1100px; margin:0 auto; display:flex; flex-direction:column; gap:20px;">
+        <div style="display:flex; gap:14px;">
+          <div style="width:6px; height:6px; border-radius:50%; background:#8B5CF6; margin-top:9px; flex-shrink:0;"></div>
+          <div>
+            <div style="font-size:15px; font-weight:600; color:#fff; margin-bottom:4px;">Build first, advise second</div>
+            <p style="font-size:14px; line-height:1.6; color:rgba(255,255,255,0.55); margin:0;">Every recommendation we make is informed by a system we've engineered ourselves.</p>
+          </div>
+        </div>
+        <div style="display:flex; gap:14px;">
+          <div style="width:6px; height:6px; border-radius:50%; background:#8B5CF6; margin-top:9px; flex-shrink:0;"></div>
+          <div>
+            <div style="font-size:15px; font-weight:600; color:#fff; margin-bottom:4px;">Regulation-aware by default</div>
+            <p style="font-size:14px; line-height:1.6; color:rgba(255,255,255,0.55); margin:0;">We design for auditability and compliance from day one, not as an afterthought.</p>
+          </div>
+        </div>
+        <div style="display:flex; gap:14px;">
+          <div style="width:6px; height:6px; border-radius:50%; background:#8B5CF6; margin-top:9px; flex-shrink:0;"></div>
+          <div>
+            <div style="font-size:15px; font-weight:600; color:#fff; margin-bottom:4px;">Regional context, not imported playbooks</div>
+            <p style="font-size:14px; line-height:1.6; color:rgba(255,255,255,0.55); margin:0;">India and ASEAN have distinct regulatory and market realities — we design for them specifically.</p>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <!-- OPERATING MODEL -->
+  <div style="background:#F7F5FB; padding:80px 56px;">
+    <div style="max-width:700px; margin:0 auto 40px; text-align:center;">
+      <div style="color:#6D28D9; font-size:13px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:14px;">Why India</div>
+      <h2 style="font-family:'Space Grotesk',sans-serif; font-size:32px; color:#171224; font-weight:600; margin:0; line-height:1.35;">A research and engineering hub, not a satellite office</h2>
+      <p style="font-size:15.5px; line-height:1.75; color:#6B6480; margin:22px auto 0; max-width:680px;">India is where the work happens — R&D, product engineering, and the subject-matter expertise we bring to every ASEAN engagement all originate here.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(6,1fr); gap:14px; max-width:1300px; margin:0 auto;">
+      <div style="text-align:center; padding:20px;">
+        <div style="width:52px; height:52px; margin:0 auto 18px; border-radius:14px; background:rgba(139,92,246,0.08); display:flex; align-items:center; justify-content:center;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-5.5 7-11a7 7 0 10-14 0c0 5.5 7 11 7 11z" stroke="#8B5CF6" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.4" stroke="#8B5CF6" stroke-width="1.6"/></svg>
+        </div>
+        <div style="font-size:15px; font-weight:600; color:#171224; line-height:1.4; margin-bottom:6px;">R&D at the core</div>
+        <div style="font-size:13.5px; color:#6B6480; line-height:1.5;">Applied research drives every product decision, not just engineering.</div>
+      </div>
+      <div style="text-align:center; padding:20px;">
+        <div style="width:52px; height:52px; margin:0 auto 18px; border-radius:14px; background:rgba(139,92,246,0.08); display:flex; align-items:center; justify-content:center;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#8B5CF6" stroke-width="1.6"/><path d="M3 12h18M12 3c2.5 2.6 4 6 4 9s-1.5 6.4-4 9c-2.5-2.6-4-6-4-9s1.5-6.4 4-9z" stroke="#8B5CF6" stroke-width="1.6"/></svg>
+        </div>
+        <div style="font-size:15px; font-weight:600; color:#171224; line-height:1.4; margin-bottom:6px;">Expert-led development</div>
+        <div style="font-size:13.5px; color:#6B6480; line-height:1.5;">Our own AI and cyber security experts lead every product build.</div>
+      </div>
+      <div style="text-align:center; padding:20px;">
+        <div style="width:52px; height:52px; margin:0 auto 18px; border-radius:14px; background:rgba(139,92,246,0.08); display:flex; align-items:center; justify-content:center;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#8B5CF6" stroke-width="1.6"/><circle cx="12" cy="12" r="4.5" stroke="#8B5CF6" stroke-width="1.6"/><circle cx="12" cy="12" r="1" fill="#8B5CF6"/></svg>
+        </div>
+        <div style="font-size:15px; font-weight:600; color:#171224; line-height:1.4; margin-bottom:6px;">Applied AI, not theory</div>
+        <div style="font-size:13.5px; color:#6B6480; line-height:1.5;">Every AI claim we make is backed by a system we've actually shipped.</div>
+      </div>
+      <div style="text-align:center; padding:20px;">
+        <div style="width:52px; height:52px; margin:0 auto 18px; border-radius:14px; background:rgba(139,92,246,0.08); display:flex; align-items:center; justify-content:center;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 16l5-6 4 4 7-9" stroke="#8B5CF6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 5h5v5" stroke="#8B5CF6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div style="font-size:15px; font-weight:600; color:#171224; line-height:1.4; margin-bottom:6px;">DPIIT-recognised</div>
+        <div style="font-size:13.5px; color:#6B6480; line-height:1.5;">Recognised startup under India's Startup India initiative.</div>
+      </div>
+      <div style="text-align:center; padding:20px;">
+        <div style="width:52px; height:52px; margin:0 auto 18px; border-radius:14px; background:rgba(139,92,246,0.08); display:flex; align-items:center; justify-content:center;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v6c0 5.5 3.5 9 8 10 4.5-1 8-4.5 8-10V6l-8-4z" stroke="#8B5CF6" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </div>
+        <div style="font-size:15px; font-weight:600; color:#171224; line-height:1.4; margin-bottom:6px;">AWS Activate member</div>
+        <div style="font-size:13.5px; color:#6B6480; line-height:1.5;">Backed by AWS's startup program for cloud infrastructure.</div>
+      </div>
+      <div style="text-align:center; padding:20px;">
+        <div style="width:52px; height:52px; margin:0 auto 18px; border-radius:14px; background:rgba(139,92,246,0.08); display:flex; align-items:center; justify-content:center;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3z" stroke="#8B5CF6" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="#8B5CF6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div style="font-size:15px; font-weight:600; color:#171224; line-height:1.4; margin-bottom:6px;">DSCI member</div>
+        <div style="font-size:13.5px; color:#6B6480; line-height:1.5;">Active member of the Data Security Council of India.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 MARKETS -->
+  <div style="background:#171224; padding:80px 56px; position:relative; overflow:hidden;">
+    <div style="position:absolute; top:-140px; left:50%; transform:translateX(-50%); width:600px; height:600px; border-radius:50%; background:radial-gradient(circle, rgba(139,92,246,0.15), transparent 70%);"></div>
+    <div style="max-width:1000px; margin:0 auto; position:relative; display:flex; align-items:center; gap:56px;">
+      <div style="flex:1;">
+        <div style="color:#A78BFA; font-size:13px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:14px;">Regional reach</div>
+        <h2 style="font-family:'Space Grotesk',sans-serif; font-size:28px; color:#fff; font-weight:600; margin:0 0 18px; line-height:1.4;">3 markets, 1 team</h2>
+        <p style="font-size:15.5px; line-height:1.75; color:rgba(255,255,255,0.6); margin:0;">Product engineering happens from India, while affiliated Innov8 entities in Singapore and Brunei extend our reach — bringing local context to every ASEAN engagement without fragmenting the team behind it.</p>
+      </div>
+      <div style="flex:1; display:flex; justify-content:center; gap:20px;">
+        <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:24px; text-align:center; flex:1;">
+          <div style="font-family:'Space Grotesk',sans-serif; font-size:18px; font-weight:700; color:#fff; margin-bottom:4px;">India</div>
+          <div style="font-size:12.5px; color:rgba(255,255,255,0.5);">Engineering, R&D & Subject Matter Experts hub</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:24px; text-align:center; flex:1;">
+          <div style="font-family:'Space Grotesk',sans-serif; font-size:18px; font-weight:700; color:#fff; margin-bottom:4px;">Singapore</div>
+          <div style="font-size:12.5px; color:rgba(255,255,255,0.5);">Regional partnerships & business growth</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:24px; text-align:center; flex:1;">
+          <div style="font-family:'Space Grotesk',sans-serif; font-size:18px; font-weight:700; color:#fff; margin-bottom:4px;">Brunei</div>
+          <div style="font-size:12.5px; color:rgba(255,255,255,0.5);">Market development · academic partnerships</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEAM -->
+  <div style="background:#F7F5FB; padding:0 56px 96px;">
+    <div style="max-width:700px; margin:0 auto 40px; text-align:center;">
+      <div style="color:#6D28D9; font-size:13px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:14px;">Leadership</div>
+      <h2 style="font-family:'Space Grotesk',sans-serif; font-size:32px; color:#171224; font-weight:600; margin:0; line-height:1.35;">The team behind Ind Innov8</h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:24px; max-width:1200px; margin:0 auto;">
+      <sc-for list="{{ team }}" as="t" hint-placeholder-count="4">
+        <div style="text-align:center;">
+          <div style="width:120px; height:120px; margin:0 auto 20px;">
+            <svg width="120" height="120" viewBox="0 0 120 120">
+              <circle cx="60" cy="46" r="24" fill="{{ t.avatarSkin }}"/>
+              <sc-if value="{{ t.isMale }}" hint-placeholder-val="{{ true }}">
+                <sc-if value="{{ t.flowHair }}" hint-placeholder-val="{{ false }}">
+                  <path d="M35 33c0-15 11-25 25-25s25 10 25 25c0 4-1 7-2 9-3-4-4-13-7-16-5 6-13 8-16 8s-6-1-8-4c-2 5-8 8-13 10-1-2-4-5-4-7z" fill="{{ t.avatarHair }}"/>
+                </sc-if>
+                <sc-if value="{{ t.ivyLeagueHair }}" hint-placeholder-val="{{ false }}">
+                  <path d="M37 32c1-13 11-20 23-20s22 7 23 20c0 3-1 6-2 7-2-9-6-16-21-16s-19 7-21 16c-1-1-2-4-2-7z" fill="{{ t.avatarHair }}"/>
+                </sc-if>
+                <sc-if value="{{ t.notIvyLeagueHair }}" hint-placeholder-val="{{ true }}">
+                  <path d="M38 30c2-12 12-18 22-18s20 6 22 18c1 5-1 9-3 9-1-8-6-13-19-13s-18 5-19 13c-2 0-4-4-3-9z" fill="{{ t.avatarHair }}"/>
+                </sc-if>
+              </sc-if>
+              <sc-if value="{{ t.hasGlasses }}" hint-placeholder-val="{{ false }}">
+                <rect x="40" y="42" width="14" height="11" rx="4" fill="none" stroke="#171224" stroke-width="2"/>
+                <rect x="66" y="42" width="14" height="11" rx="4" fill="none" stroke="#171224" stroke-width="2"/>
+                <line x1="54" y1="46" x2="66" y2="46" stroke="#171224" stroke-width="2"/>
+              </sc-if>
+              <sc-if value="{{ t.isFemale }}" hint-placeholder-val="{{ false }}">
+                <path d="M60 16c16 0 27 12 27 28 0 8-2 15-5 15 0-10 0-20-5-25-4 8-15 12-27 12-3 0-6 8-6 13-3 0-5-7-5-15 0-16 5-28 21-28z" fill="{{ t.avatarHair }}"/>
+              </sc-if>
+              <sc-if value="{{ t.isSuit }}" hint-placeholder-val="{{ false }}">
+                <path d="M60 68c-28 0-44 17-44 36v6h88v-6c0-19-16-36-44-36z" fill="#1E1B29"/>
+                <path d="M60 68c-6 0-11 1-16 3l12 20 4-9 4 9 12-20c-5-2-10-3-16-3z" fill="#fff"/>
+                <path d="M56 72l4 21 4-21-4 4z" fill="#B91C1C"/>
+              </sc-if>
+              <sc-if value="{{ t.notSuit }}" hint-placeholder-val="{{ true }}">
+                <path d="M60 68c-28 0-44 17-44 36v6h88v-6c0-19-16-36-44-36z" fill="{{ t.avatarShirt }}"/>
+              </sc-if>
+              <sc-if value="{{ t.hasTie }}" hint-placeholder-val="{{ false }}">
+                <path d="M60 68c-6 0-11 1-15 3l15 12 15-12c-4-2-9-3-15-3z" fill="#fff"/>
+                <path d="M56 72l4 20 4-20-4 4z" fill="#B91C1C"/>
+              </sc-if>
+            </svg>
+          </div>
+          <div style="font-size:17px; font-weight:600; color:#171224; margin-bottom:4px;">{{ t.name }}</div>
+          <div style="font-size:14px; color:#8B5CF6; font-weight:500; margin-bottom:8px;">{{ t.role }}</div>
+          <div style="font-size:13px; color:#6B6480; line-height:1.5; max-width:220px; margin:0 auto;">{{ t.bio }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div id="contact" style="background:#0A0A12; padding:96px 56px; position:relative; overflow:hidden;">
+    <div style="position:absolute; bottom:-200px; right:-100px; width:600px; height:600px; border-radius:50%; background:radial-gradient(circle, rgba(139,92,246,0.2), transparent 70%);"></div>
+    <div style="max-width:1200px; margin:0 auto; display:flex; gap:80px; position:relative;">
+      <div style="flex:1;">
+        <div style="color:#A78BFA; font-size:13px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:14px;">Get in touch</div>
+        <h2 style="font-family:'Space Grotesk',sans-serif; font-size:38px; color:#fff; font-weight:600; margin:0 0 22px; line-height:1.25;">Let's build something resilient.</h2>
+        <p style="font-size:17px; line-height:1.75; color:rgba(255,255,255,0.6); margin:0 0 40px; max-width:440px;">For product briefings, pilot partnerships, investment conversations, AI advisory, or ecosystem collaboration — reach out and our team will get back to you.</p>
+        <div style="display:flex; flex-direction:column; gap:18px;">
+          <div style="color:rgba(255,255,255,0.75); font-size:15px;"><strong style="color:#fff;">Address</strong><br>192/3, Sakthi Nagar Main Road, Arumbakkam, Chennai 600 106, Tamil Nadu, India</div>
+          <div style="color:rgba(255,255,255,0.75); font-size:15px;"><strong style="color:#fff;">Phone</strong><br>+91 978 979 4149</div>
+          <div style="color:rgba(255,255,255,0.75); font-size:15px;"><strong style="color:#fff;">Email</strong><br>founders@innov8-labs.in</div>
+        </div>
+      </div>
+      <div style="flex:1; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:24px; padding:40px;">
+        <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; min-height:340px; text-align:center;">
+            <div style="width:60px; height:60px; border-radius:50%; background:linear-gradient(135deg,#8B5CF6,#6D28D9); display:flex; align-items:center; justify-content:center; margin-bottom:20px; font-size:26px;">✓</div>
+            <div style="color:#fff; font-size:20px; font-weight:600; margin-bottom:8px;">Thank you!</div>
+            <div style="color:rgba(255,255,255,0.6); font-size:15px;">Your message has been sent. We'll be in touch shortly.</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ handleSubmit }}" style="display:flex; flex-direction:column; gap:18px;">
+            <input type="text" name="name" placeholder="Full name" required="{{ true }}" style="padding:15px 18px; border-radius:12px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:#fff; font-size:15px; font-family:'Poppins',sans-serif;" />
+            <input type="email" name="email" placeholder="Work email" required="{{ true }}" style="padding:15px 18px; border-radius:12px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:#fff; font-size:15px; font-family:'Poppins',sans-serif;" />
+            <input type="text" name="organisation" placeholder="Organisation" style="padding:15px 18px; border-radius:12px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:#fff; font-size:15px; font-family:'Poppins',sans-serif;" />
+            <textarea name="message" placeholder="How can we help?" rows="4" style="padding:15px 18px; border-radius:12px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:#fff; font-size:15px; font-family:'Poppins',sans-serif; resize:none;"></textarea>
+            <button type="submit" disabled="{{ submitting }}" style="padding:16px; border:none; border-radius:12px; background:linear-gradient(135deg,#8B5CF6,#6D28D9); color:#fff; font-size:15px; font-weight:600; cursor:pointer; font-family:'Poppins',sans-serif;">{{ submitLabel }}</button>
+            <sc-if value="{{ submitError }}" hint-placeholder-val="{{ false }}">
+              <div style="color:#FCA5A5; font-size:13px;">Couldn't send automatically — please email founders@innov8-labs.in directly.</div>
+            </sc-if>
+          </form>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="background:#0A0A12; border-top:1px solid rgba(255,255,255,0.08); padding:48px 56px 32px;">
+    <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; gap:40px; flex-wrap:wrap; margin-bottom:32px;">
+      <img src="assets/innov8-logo.png" alt="Ind Innov8" style="height:26px; width:auto;" />
+      <div style="display:flex; gap:40px; flex-wrap:wrap;">
+        <a href="Innov8 Homepage.dc.html" style="color:rgba(255,255,255,0.55); font-size:14px;">Home</a>
+        <a href="Innov8 Services.dc.html" style="color:rgba(255,255,255,0.55); font-size:14px;">Services</a>
+        <a href="Innov8 Products.dc.html" style="color:rgba(255,255,255,0.55); font-size:14px;">Products</a>
+        <a href="Innov8 Careers.dc.html" style="color:rgba(255,255,255,0.55); font-size:14px;">Careers</a>
+        <a href="#contact" style="color:rgba(255,255,255,0.55); font-size:14px;">Contact</a>
+      </div>
+    </div>
+    <div style="max-width:1200px; margin:0 auto; padding-top:24px; border-top:1px solid rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:space-between;">
+      <span style="color:rgba(255,255,255,0.4); font-size:13px;">© 2026 Ind Innov8 Private Limited.</span>
+      <span style="color:rgba(255,255,255,0.4); font-size:13px;">Chennai, India</span>
+    </div>
+  </div>
+
+  <!-- FLOATING TANYA -->
+  <div style="position:fixed; bottom:28px; right:28px; z-index:100;">
+    <sc-if value="{{ tanyaOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="width:340px; height:440px; background:#fff; border-radius:20px; box-shadow:0 20px 60px rgba(0,0,0,0.35); display:flex; flex-direction:column; margin-bottom:14px; overflow:hidden;">
+        <div style="padding:16px 18px; background:linear-gradient(135deg,#8B5CF6,#6D28D9); display:flex; align-items:center; justify-content:space-between;">
+          <div style="color:#fff; font-size:14.5px; font-weight:600;">Tanya · Ind Innov8 assistant</div>
+          <span onClick="{{ closeTanya }}" style="color:#fff; cursor:pointer; font-size:16px; opacity:0.8;">✕</span>
+        </div>
+        <div style="flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:10px; padding:16px;">
+          <sc-for list="{{ chatMessages }}" as="m" hint-placeholder-count="1">
+            <div style="align-self:{{ m.align }}; max-width:82%; padding:9px 13px; border-radius:13px; background:{{ m.bg }}; color:{{ m.color }}; font-size:13.5px; line-height:1.5;">{{ m.text }}</div>
+          </sc-for>
+          <sc-if value="{{ chatLoading }}" hint-placeholder-val="{{ false }}">
+            <div style="align-self:flex-start; padding:9px 13px; border-radius:13px; background:#F1EEFB; color:#6B6480; font-size:13.5px;">Thinking…</div>
+          </sc-if>
+          <sc-if value="{{ leadSent }}" hint-placeholder-val="{{ false }}">
+            <div style="align-self:center; padding:9px 16px; border-radius:999px; background:#171224; color:#fff; font-size:12.5px; font-weight:600;">✓ Team notified — we'll be in touch</div>
+          </sc-if>
+        </div>
+        <form onSubmit="{{ sendChat }}" style="display:flex; gap:8px; padding:14px; border-top:1px solid rgba(23,18,36,0.08);">
+          <input type="text" value="{{ chatInput }}" onChange="{{ handleChatChange }}" placeholder="Ask a question…" style="flex:1; padding:10px 12px; border-radius:9px; border:1px solid rgba(23,18,36,0.15); font-size:13.5px; font-family:'Poppins',sans-serif;" />
+          <button type="submit" style="padding:10px 16px; border:none; border-radius:9px; background:linear-gradient(135deg,#8B5CF6,#6D28D9); color:#fff; font-size:13.5px; font-weight:600; cursor:pointer; font-family:'Poppins',sans-serif;">Send</button>
+        </form>
+      </div>
+    </sc-if>
+    <div onClick="{{ toggleTanya }}" style="padding:14px 22px; border-radius:999px; background:#7C3AED; box-shadow:0 10px 30px rgba(124,58,237,0.5); display:flex; align-items:center; gap:9px; cursor:pointer; color:#fff; font-family:'Poppins',sans-serif; font-weight:600; font-size:14.5px; margin-left:auto; white-space:nowrap;">
+      <svg width="20" height="20" viewBox="0 0 20 20" style="flex-shrink:0;"><path d="M10 1l7 2.5v5c0 5-3 8.5-7 10.5-4-2-7-5.5-7-10.5v-5L10 1z" fill="rgba(255,255,255,0.25)"/><text x="10" y="13.5" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-weight="700" font-size="9" fill="#fff">T</text></svg>
+      Talk to Tanya
+    </div>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    submitted: false, submitting: false, submitError: false, productsOpen: false, tanyaOpen: false, chatInput: '', chatLoading: false,
+    chatMessages: [{ text: "Hi, I'm Tanya, the Ind Innov8 assistant. Ask me about our services, Drillx, or how to get in touch.", align: 'flex-start', bg: '#F1EEFB', color: '#171224' }],
+    leadInfo: {}, leadSent: false
+  };
+  TANYA_SYSTEM_PROMPT = "You are Tanya, AI assistant for Ind Innov8 (ind.innov8-labs.in), India's DPIIT-recognised R&D and AI engineering hub serving ASEAN, based in Chennai. ALWAYS reply in under 30 words - be extremely concise, and always finish your sentence (never trail off mid-thought). FULL KNOWLEDGE OF THE SITE: MISSION - make AI adoption real not theoretical, we build with AI ourselves before advising others. VISION - be the trusted AI and cyber engineering partner for ASEAN. SERVICES: (1) Product Engineering - full-cycle AI-native builds, architecture, ML integration, cloud/security engineering, proven via Drillx; engagement model is Scope -> Build -> Operate. (2) AI Journey - research-led AI adoption roadmaps, readiness assessments, pilots for ASEAN enterprises. PRODUCTS: Drillx is our flagship - an AI-powered cyber tabletop exercise platform for regulated orgs (banks, fintechs/NBFCs, insurers, GCCs, government, enterprise security teams) to design/run/score/improve cyber crisis drills. Built on two engines: Scenario Recommendation Engine (industry & country-specific scenarios) and Reporting Engine (audit-ready, ISO 27001/NIST CSF aligned), plus SOP-grounded AI scoring against the client's own playbooks. Drillx is MVP stage today running as a managed PaaS with design partners, moving next to self-serve SaaS, and we're raising to fund engineering, certifications and GTM. Site: drillx.innov8-labs.in. WHY INDIA: R&D at the core, expert-led development, applied AI not theory, DPIIT registered, DSCI member, AWS Activate member. REGIONAL MODEL - 3 markets 1 team: India (engineering, R&D & subject matter experts hub), Singapore (regional partnerships & business growth), Brunei (market development & academic partnerships incl. UBD, NTU). LEADERSHIP: Muthukrishnan Balasundaram - Founder & CEO (product strategy, regional operations, partnerships); Radha Vattappan - Co-Founder & COO (programme management, delivery, operations); Gopal Ramachandran - CFO (finance, compliance); Sanskriti Grover - Platform Lead (platform building, POVs, demos). CAREERS: hiring engineers, AI/ML engineers, security researchers, AI advisory consultants; benefits include direct access to leadership, flexible hybrid work from Chennai, equity for early team, and a learning budget. YOUR JOB: silently figure out what the visitor is (investor, prospective customer/pilot partner, job candidate, or general/press) and tailor your pitch: investors get traction, MVP stage, the ask, and why now; customers get product fit for their sector and a demo offer; candidates get open roles and culture; others get a general overview. Once they show real interest (wants a demo, wants to invest, wants to apply, wants a follow-up call), ask clear consent: 'Would it be okay to grab a few details so our team can follow up?'. Only after they agree, collect ONE AT A TIME: full name, company/organisation, email, phone - confirm each back naturally. After capturing any field, silently append a hidden marker at the very end of your reply, exact form [LEAD:field=value] where field is name/company/email/phone/intent (intent = investor/customer/candidate/other, capture this first once inferred). NEVER show or mention the marker. Once name, company, email and phone are captured, thank them warmly and say the right team member will reach out soon.";
+
+  handleSubmit = async (e) => {
+    e.preventDefault();
+    const fd = new FormData(e.target);
+    this.setState({ submitting: true, submitError: false });
+    try {
+      const resp = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'contact',
+          name: fd.get('name'),
+          email: fd.get('email'),
+          organisation: fd.get('organisation'),
+          message: fd.get('message')
+        })
+      });
+      if (!resp.ok) throw new Error('send failed');
+      this.setState({ submitted: true, submitting: false });
+    } catch (err) {
+      this.setState({ submitting: false, submitError: true });
+    }
+  };
+  openProducts = () => this.setState({ productsOpen: true });
+  closeProducts = () => this.setState({ productsOpen: false });
+  toggleTanya = () => this.setState(s => ({ tanyaOpen: !s.tanyaOpen }));
+  closeTanya = () => this.setState({ tanyaOpen: false });
+  handleChatChange = (e) => this.setState({ chatInput: e.target.value });
+
+  sendChat = async (e) => {
+    e.preventDefault();
+    const question = this.state.chatInput.trim();
+    if (!question) return;
+    const userMsg = { text: question, align: 'flex-end', bg: '#8B5CF6', color: '#fff' };
+    this.setState(s => ({ chatMessages: [...s.chatMessages, userMsg], chatInput: '', chatLoading: true }));
+    try {
+      const reply = await window.claude.complete({
+        model: 'claude-haiku-4-5',
+        max_tokens: 80,
+        system: this.TANYA_SYSTEM_PROMPT,
+        messages: [{ role: 'user', content: question }]
+      });
+      const markerRe = /\[LEAD:(\w+)=([^\]]+)\]/g;
+      let clean = reply, m, newLead = { ...this.state.leadInfo };
+      while ((m = markerRe.exec(reply)) !== null) newLead[m[1]] = m[2].trim();
+      clean = clean.replace(markerRe, '').trim();
+      this.setState(s => ({ chatMessages: [...s.chatMessages, { text: clean, align: 'flex-start', bg: '#F1EEFB', color: '#171224' }], chatLoading: false, leadInfo: newLead }));
+      if (newLead.name && newLead.company && newLead.email && newLead.phone && !this.state.leadSent) {
+        this.sendLeadEmail(newLead);
+      }
+    } catch (err) {
+      this.setState(s => ({ chatMessages: [...s.chatMessages, { text: "Sorry, I couldn't reach the assistant right now. Please use the contact form below.", align: 'flex-start', bg: '#F1EEFB', color: '#171224' }], chatLoading: false }));
+    }
+  };
+  sendLeadEmail = async (lead) => {
+    try {
+      const resp = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'lead', ...lead })
+      });
+      if (resp.ok) this.setState({ leadSent: true });
+    } catch (err) { /* silent - lead capture is best-effort */ }
+  };
+
+  renderVals() {
+    return {
+      submitted: this.state.submitted,
+      notSubmitted: !this.state.submitted,
+      submitting: this.state.submitting,
+      submitError: this.state.submitError,
+      submitLabel: this.state.submitting ? 'Sending…' : 'Send message',
+      handleSubmit: this.handleSubmit,
+      productsOpen: this.state.productsOpen,
+      openProducts: this.openProducts,
+      closeProducts: this.closeProducts,
+      hoverBg: { background: 'rgba(255,255,255,0.06)' },
+      tanyaOpen: this.state.tanyaOpen,
+      toggleTanya: this.toggleTanya,
+      closeTanya: this.closeTanya,
+      chatMessages: this.state.chatMessages,
+      chatLoading: this.state.chatLoading,
+      chatInput: this.state.chatInput,
+      handleChatChange: this.handleChatChange,
+      sendChat: this.sendChat,
+      leadSent: this.state.leadSent,
+      team: [
+        { initials: 'MB', name: 'Muthukrishnan Balasundaram', role: 'Founder & CEO', bio: 'Product strategy, regional operations, and partnerships.', avatarSkin: '#C88B5A', avatarHair: '#2B2118', avatarShirt: '#BFDBFE', isMale: true, isFemale: false, hasGlasses: true, flowHair: true, ivyLeagueHair: false, notIvyLeagueHair: false, isSuit: false, notSuit: true, hasTie: true },
+        { initials: 'RV', name: 'Radha Vattappan', role: 'Co-Founder & COO', bio: 'Programme management, delivery, and operations.', avatarSkin: '#D9A272', avatarHair: '#241A12', avatarShirt: '#BE185D', isMale: false, isFemale: true, notIvyLeagueHair: true, notSuit: true },
+        { initials: 'GR', name: 'Gopal Ramachandran', role: 'CFO', bio: 'Oversees finance, compliance, and other relevant matters.', avatarSkin: '#C88B5A', avatarHair: '#33261A', avatarShirt: '#BFDBFE', isMale: true, isFemale: false, flowHair: true, notIvyLeagueHair: false, notSuit: true, hasTie: true },
+        { initials: 'SG', name: 'Sanskriti Grover', role: 'Platform Lead', bio: 'Leads platform building, POVs, and demos.', avatarSkin: '#D9A272', avatarHair: '#1F1710', avatarShirt: '#B45309', isMale: false, isFemale: true, notIvyLeagueHair: true, notSuit: true }
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>

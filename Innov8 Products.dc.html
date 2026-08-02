@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  body { margin:0; font-family:'Poppins',sans-serif; background:#0A0A12; }
+  a { color:#8B5CF6; text-decoration:none; }
+  a:hover { color:#A78BFA; }
+</style>
+</helmet>
+
+<div style="background:#0A0A12; min-height:100vh; overflow-x:hidden;">
+
+  <!-- NAV -->
+  <div style="position:fixed; top:0; left:0; right:0; z-index:50; display:flex; align-items:center; justify-content:space-between; padding:22px 56px; background:rgba(10,10,18,0.85); backdrop-filter:blur(14px); border-bottom:1px solid rgba(255,255,255,0.08);">
+    <a href="Innov8 Homepage.dc.html" style="display:flex; align-items:center; gap:10px;">
+      <img src="assets/innov8-logo.png" alt="Ind Innov8" style="height:30px; width:auto;" />
+    </a>
+    <div style="display:flex; align-items:center; gap:36px;">
+      <a href="Innov8 Homepage.dc.html" style="color:rgba(255,255,255,0.75); font-size:15px; font-weight:500;">Home</a>
+      <a href="Innov8 Services.dc.html" style="color:rgba(255,255,255,0.75); font-size:15px; font-weight:500;">Services</a>
+      <div style="position:relative;" onMouseEnter="{{ openProducts }}" onMouseLeave="{{ closeProducts }}">
+        <span style="color:#fff; font-size:15px; font-weight:600; display:flex; align-items:center; gap:6px;">Products
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <sc-if value="{{ productsOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute; top:100%; left:-8px; padding-top:14px; width:230px;">
+            <div style="background:#171224; border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:10px; box-shadow:0 20px 50px rgba(0,0,0,0.4);">
+              <a href="Innov8 Drillx.dc.html" style="display:flex; align-items:center; gap:12px; padding:12px; border-radius:10px;" style-hover="{{ hoverBg }}">
+                <img src="assets/drillx-logo.png" alt="Drillx" style="height:16px; width:auto;" />
+                <div>
+                  <div style="color:#fff; font-size:14px; font-weight:600;">Drillx</div>
+                  <div style="color:rgba(255,255,255,0.45); font-size:12px;">Cyber drill platform</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+      <a href="Innov8 About.dc.html" style="color:rgba(255,255,255,0.75); font-size:15px; font-weight:500;">About</a>
+      <a href="Innov8 Careers.dc.html" style="color:rgba(255,255,255,0.75); font-size:15px; font-weight:500;">Careers</a>
+      <a href="#contact" style="padding:11px 22px; background:linear-gradient(135deg,#8B5CF6,#6D28D9); border-radius:999px; color:#fff; font-size:14px; font-weight:600; box-shadow:0 4px 20px rgba(139,92,246,0.35);">Get in touch</a>
+    </div>
+  </div>
+  <div style="height:76px;"></div>
+
+  <!-- HEADER -->
+  <div style="padding:56px 56px 60px;">
+    <div style="max-width:700px;">
+      <div style="color:#A78BFA; font-size:13px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:14px;">Our products</div>
+      <h1 style="font-family:'Space Grotesk',sans-serif; font-size:42px; color:#fff; font-weight:700; margin:0 0 18px; line-height:1.2; letter-spacing:-0.5px;">Our engineering, shipped as a product</h1>
+      <p style="font-size:17px; line-height:1.7; color:rgba(255,255,255,0.6); margin:0;">Drillx is our flagship platform — the clearest proof of what our engineering can build.</p>
+    </div>
+  </div>
+
+  <!-- PRODUCT CARDS -->
+  <div style="padding:0 56px 96px;">
+    <div style="max-width:820px; margin:0 auto;">
+      <div style="background:linear-gradient(145deg, rgba(139,92,246,0.14), rgba(255,255,255,0.03)); border:1px solid rgba(139,92,246,0.3); border-radius:26px; padding:52px; display:flex; flex-direction:column; align-items:flex-start; gap:0;">
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:24px;">
+          <div style="display:inline-flex; align-items:center; padding:6px 14px; border-radius:999px; background:rgba(139,92,246,0.18); color:#C4B5FD; font-size:12px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase;">Flagship product</div>
+          <div style="display:inline-flex; align-items:center; padding:6px 14px; border-radius:999px; background:rgba(255,255,255,0.06); color:rgba(255,255,255,0.6); font-size:12px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase;">Building our MVP</div>
+        </div>
+        <img src="assets/drillx-logo.png" alt="Drillx" style="height:48px; width:auto; object-fit:contain; margin-bottom:22px; display:block; align-self:flex-start;" />
+        <p style="font-size:17px; line-height:1.75; color:rgba(255,255,255,0.65); margin:0 0 28px; max-width:520px;">An AI-powered tabletop exercise platform that helps regulated organisations design, run, score, and improve cyber crisis exercises — affordably, repeatably, and with audit-ready evidence.</p>
+        <div style="width:100%; height:280px; margin-bottom:28px;">
+          <image-slot id="drillx-product-shot" shape="rounded" radius="16" placeholder="Drop a Drillx product screenshot"></image-slot>
+        </div>
+        <a href="Innov8 Drillx.dc.html" style="display:inline-flex; align-items:center; gap:8px; color:#C4B5FD; font-size:15px; font-weight:600; width:fit-content;">Explore Drillx →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div id="contact" style="background:#0A0A12; padding:96px 56px; position:relative; overflow:hidden; border-top:1px solid rgba(255,255,255,0.08);">
+    <div style="position:absolute; bottom:-200px; right:-100px; width:600px; height:600px; border-radius:50%; background:radial-gradient(circle, rgba(139,92,246,0.2), transparent 70%);"></div>
+    <div style="max-width:1200px; margin:0 auto; display:flex; gap:80px; position:relative;">
+      <div style="flex:1;">
+        <div style="color:#A78BFA; font-size:13px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:14px;">Get in touch</div>
+        <h2 style="font-family:'Space Grotesk',sans-serif; font-size:38px; color:#fff; font-weight:600; margin:0 0 22px; line-height:1.25;">Let's build something resilient.</h2>
+        <p style="font-size:17px; line-height:1.75; color:rgba(255,255,255,0.6); margin:0 0 40px; max-width:440px;">For product briefings, pilot partnerships, investment conversations, or ecosystem collaboration — reach out and our team will get back to you.</p>
+        <div style="display:flex; flex-direction:column; gap:18px;">
+          <div style="color:rgba(255,255,255,0.75); font-size:15px;"><strong style="color:#fff;">Address</strong><br>192/3, Sakthi Nagar Main Road, Arumbakkam, Chennai 600 106, Tamil Nadu, India</div>
+          <div style="color:rgba(255,255,255,0.75); font-size:15px;"><strong style="color:#fff;">Phone</strong><br>+91 978 979 4149</div>
+          <div style="color:rgba(255,255,255,0.75); font-size:15px;"><strong style="color:#fff;">Email</strong><br>founders@innov8-labs.in</div>
+        </div>
+      </div>
+      <div style="flex:1; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:24px; padding:40px;">
+        <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; min-height:340px; text-align:center;">
+            <div style="width:60px; height:60px; border-radius:50%; background:linear-gradient(135deg,#8B5CF6,#6D28D9); display:flex; align-items:center; justify-content:center; margin-bottom:20px; font-size:26px;">✓</div>
+            <div style="color:#fff; font-size:20px; font-weight:600; margin-bottom:8px;">Thank you!</div>
+            <div style="color:rgba(255,255,255,0.6); font-size:15px;">Your message has been sent. We'll be in touch shortly.</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ handleSubmit }}" style="display:flex; flex-direction:column; gap:18px;">
+            <input type="text" name="name" placeholder="Full name" required="{{ true }}" style="padding:15px 18px; border-radius:12px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:#fff; font-size:15px; font-family:'Poppins',sans-serif;" />
+            <input type="email" name="email" placeholder="Work email" required="{{ true }}" style="padding:15px 18px; border-radius:12px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:#fff; font-size:15px; font-family:'Poppins',sans-serif;" />
+            <input type="text" name="organisation" placeholder="Organisation" style="padding:15px 18px; border-radius:12px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:#fff; font-size:15px; font-family:'Poppins',sans-serif;" />
+            <textarea name="message" placeholder="How can we help?" rows="4" style="padding:15px 18px; border-radius:12px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:#fff; font-size:15px; font-family:'Poppins',sans-serif; resize:none;"></textarea>
+            <button type="submit" disabled="{{ submitting }}" style="padding:16px; border:none; border-radius:12px; background:linear-gradient(135deg,#8B5CF6,#6D28D9); color:#fff; font-size:15px; font-weight:600; cursor:pointer; font-family:'Poppins',sans-serif;">{{ submitLabel }}</button>
+            <sc-if value="{{ submitError }}" hint-placeholder-val="{{ false }}">
+              <div style="color:#FCA5A5; font-size:13px;">Couldn't send automatically — please email founders@innov8-labs.in directly.</div>
+            </sc-if>
+          </form>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="background:#0A0A12; border-top:1px solid rgba(255,255,255,0.08); padding:48px 56px 32px;">
+    <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; gap:40px; flex-wrap:wrap; margin-bottom:32px;">
+      <img src="assets/innov8-logo.png" alt="Ind Innov8" style="height:26px; width:auto;" />
+      <div style="display:flex; gap:40px; flex-wrap:wrap;">
+        <a href="Innov8 Homepage.dc.html" style="color:rgba(255,255,255,0.55); font-size:14px;">Home</a>
+        <a href="Innov8 Services.dc.html" style="color:rgba(255,255,255,0.55); font-size:14px;">Services</a>
+        <a href="Innov8 About.dc.html" style="color:rgba(255,255,255,0.55); font-size:14px;">About</a>
+        <a href="Innov8 Careers.dc.html" style="color:rgba(255,255,255,0.55); font-size:14px;">Careers</a>
+        <a href="#contact" style="color:rgba(255,255,255,0.55); font-size:14px;">Contact</a>
+      </div>
+    </div>
+    <div style="max-width:1200px; margin:0 auto; padding-top:24px; border-top:1px solid rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:space-between;">
+      <span style="color:rgba(255,255,255,0.4); font-size:13px;">© 2026 Ind Innov8 Private Limited.</span>
+      <span style="color:rgba(255,255,255,0.4); font-size:13px;">Chennai, India</span>
+    </div>
+  </div>
+
+  <!-- FLOATING TANYA -->
+  <div style="position:fixed; bottom:28px; right:28px; z-index:100;">
+    <sc-if value="{{ tanyaOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="width:340px; height:440px; background:#fff; border-radius:20px; box-shadow:0 20px 60px rgba(0,0,0,0.35); display:flex; flex-direction:column; margin-bottom:14px; overflow:hidden;">
+        <div style="padding:16px 18px; background:linear-gradient(135deg,#8B5CF6,#6D28D9); display:flex; align-items:center; justify-content:space-between;">
+          <div style="color:#fff; font-size:14.5px; font-weight:600;">Tanya · Ind Innov8 assistant</div>
+          <span onClick="{{ closeTanya }}" style="color:#fff; cursor:pointer; font-size:16px; opacity:0.8;">✕</span>
+        </div>
+        <div style="flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:10px; padding:16px;">
+          <sc-for list="{{ chatMessages }}" as="m" hint-placeholder-count="1">
+            <div style="align-self:{{ m.align }}; max-width:82%; padding:9px 13px; border-radius:13px; background:{{ m.bg }}; color:{{ m.color }}; font-size:13.5px; line-height:1.5;">{{ m.text }}</div>
+          </sc-for>
+          <sc-if value="{{ chatLoading }}" hint-placeholder-val="{{ false }}">
+            <div style="align-self:flex-start; padding:9px 13px; border-radius:13px; background:#F1EEFB; color:#6B6480; font-size:13.5px;">Thinking…</div>
+          </sc-if>
+          <sc-if value="{{ leadSent }}" hint-placeholder-val="{{ false }}">
+            <div style="align-self:center; padding:9px 16px; border-radius:999px; background:#171224; color:#fff; font-size:12.5px; font-weight:600;">✓ Team notified — we'll be in touch</div>
+          </sc-if>
+        </div>
+        <form onSubmit="{{ sendChat }}" style="display:flex; gap:8px; padding:14px; border-top:1px solid rgba(23,18,36,0.08);">
+          <input type="text" value="{{ chatInput }}" onChange="{{ handleChatChange }}" placeholder="Ask a question…" style="flex:1; padding:10px 12px; border-radius:9px; border:1px solid rgba(23,18,36,0.15); font-size:13.5px; font-family:'Poppins',sans-serif;" />
+          <button type="submit" style="padding:10px 16px; border:none; border-radius:9px; background:linear-gradient(135deg,#8B5CF6,#6D28D9); color:#fff; font-size:13.5px; font-weight:600; cursor:pointer; font-family:'Poppins',sans-serif;">Send</button>
+        </form>
+      </div>
+    </sc-if>
+    <div onClick="{{ toggleTanya }}" style="padding:14px 22px; border-radius:999px; background:#7C3AED; box-shadow:0 10px 30px rgba(124,58,237,0.5); display:flex; align-items:center; gap:9px; cursor:pointer; color:#fff; font-family:'Poppins',sans-serif; font-weight:600; font-size:14.5px; margin-left:auto; white-space:nowrap;">
+      <svg width="20" height="20" viewBox="0 0 20 20" style="flex-shrink:0;"><path d="M10 1l7 2.5v5c0 5-3 8.5-7 10.5-4-2-7-5.5-7-10.5v-5L10 1z" fill="rgba(255,255,255,0.25)"/><text x="10" y="13.5" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-weight="700" font-size="9" fill="#fff">T</text></svg>
+      Talk to Tanya
+    </div>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    submitted: false, submitting: false, submitError: false, productsOpen: false, tanyaOpen: false, chatInput: '', chatLoading: false,
+    chatMessages: [{ text: "Hi, I'm Tanya, the Ind Innov8 assistant. Ask me about our services, Drillx, or how to get in touch.", align: 'flex-start', bg: '#F1EEFB', color: '#171224' }],
+    leadInfo: {}, leadSent: false
+  };
+  TANYA_SYSTEM_PROMPT = "You are Tanya, AI assistant for Ind Innov8 (ind.innov8-labs.in), India's DPIIT-recognised R&D and AI engineering hub serving ASEAN, based in Chennai. ALWAYS reply in under 30 words - be extremely concise, and always finish your sentence (never trail off mid-thought). FULL KNOWLEDGE OF THE SITE: MISSION - make AI adoption real not theoretical, we build with AI ourselves before advising others. VISION - be the trusted AI and cyber engineering partner for ASEAN. SERVICES: (1) Product Engineering - full-cycle AI-native builds, architecture, ML integration, cloud/security engineering, proven via Drillx; engagement model is Scope -> Build -> Operate. (2) AI Journey - research-led AI adoption roadmaps, readiness assessments, pilots for ASEAN enterprises. PRODUCTS: Drillx is our flagship - an AI-powered cyber tabletop exercise platform for regulated orgs (banks, fintechs/NBFCs, insurers, GCCs, government, enterprise security teams) to design/run/score/improve cyber crisis drills. Built on two engines: Scenario Recommendation Engine (industry & country-specific scenarios) and Reporting Engine (audit-ready, ISO 27001/NIST CSF aligned), plus SOP-grounded AI scoring against the client's own playbooks. Drillx is MVP stage today running as a managed PaaS with design partners, moving next to self-serve SaaS, and we're raising to fund engineering, certifications and GTM. Site: drillx.innov8-labs.in. WHY INDIA: R&D at the core, expert-led development, applied AI not theory, DPIIT registered, DSCI member, AWS Activate member. REGIONAL MODEL - 3 markets 1 team: India (engineering, R&D & subject matter experts hub), Singapore (regional partnerships & business growth), Brunei (market development & academic partnerships incl. UBD, NTU). LEADERSHIP: Muthukrishnan Balasundaram - Founder & CEO (product strategy, regional operations, partnerships); Radha Vattappan - Co-Founder & COO (programme management, delivery, operations); Gopal Ramachandran - CFO (finance, compliance); Sanskriti Grover - Platform Lead (platform building, POVs, demos). CAREERS: hiring engineers, AI/ML engineers, security researchers, AI advisory consultants; benefits include direct access to leadership, flexible hybrid work from Chennai, equity for early team, and a learning budget. YOUR JOB: silently figure out what the visitor is (investor, prospective customer/pilot partner, job candidate, or general/press) and tailor your pitch: investors get traction, MVP stage, the ask, and why now; customers get product fit for their sector and a demo offer; candidates get open roles and culture; others get a general overview. Once they show real interest (wants a demo, wants to invest, wants to apply, wants a follow-up call), ask clear consent: 'Would it be okay to grab a few details so our team can follow up?'. Only after they agree, collect ONE AT A TIME: full name, company/organisation, email, phone - confirm each back naturally. After capturing any field, silently append a hidden marker at the very end of your reply, exact form [LEAD:field=value] where field is name/company/email/phone/intent (intent = investor/customer/candidate/other, capture this first once inferred). NEVER show or mention the marker. Once name, company, email and phone are captured, thank them warmly and say the right team member will reach out soon.";
+
+  handleSubmit = async (e) => {
+    e.preventDefault();
+    const fd = new FormData(e.target);
+    this.setState({ submitting: true, submitError: false });
+    try {
+      const resp = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'contact',
+          name: fd.get('name'),
+          email: fd.get('email'),
+          organisation: fd.get('organisation'),
+          message: fd.get('message')
+        })
+      });
+      if (!resp.ok) throw new Error('send failed');
+      this.setState({ submitted: true, submitting: false });
+    } catch (err) {
+      this.setState({ submitting: false, submitError: true });
+    }
+  };
+  openProducts = () => this.setState({ productsOpen: true });
+  closeProducts = () => this.setState({ productsOpen: false });
+  toggleTanya = () => this.setState(s => ({ tanyaOpen: !s.tanyaOpen }));
+  closeTanya = () => this.setState({ tanyaOpen: false });
+  handleChatChange = (e) => this.setState({ chatInput: e.target.value });
+
+  sendChat = async (e) => {
+    e.preventDefault();
+    const question = this.state.chatInput.trim();
+    if (!question) return;
+    const userMsg = { text: question, align: 'flex-end', bg: '#8B5CF6', color: '#fff' };
+    this.setState(s => ({ chatMessages: [...s.chatMessages, userMsg], chatInput: '', chatLoading: true }));
+    try {
+      const reply = await window.claude.complete({
+        model: 'claude-haiku-4-5',
+        max_tokens: 80,
+        system: this.TANYA_SYSTEM_PROMPT,
+        messages: [{ role: 'user', content: question }]
+      });
+      const markerRe = /\[LEAD:(\w+)=([^\]]+)\]/g;
+      let clean = reply, m, newLead = { ...this.state.leadInfo };
+      while ((m = markerRe.exec(reply)) !== null) newLead[m[1]] = m[2].trim();
+      clean = clean.replace(markerRe, '').trim();
+      this.setState(s => ({ chatMessages: [...s.chatMessages, { text: clean, align: 'flex-start', bg: '#F1EEFB', color: '#171224' }], chatLoading: false, leadInfo: newLead }));
+      if (newLead.name && newLead.company && newLead.email && newLead.phone && !this.state.leadSent) {
+        this.sendLeadEmail(newLead);
+      }
+    } catch (err) {
+      this.setState(s => ({ chatMessages: [...s.chatMessages, { text: "Sorry, I couldn't reach the assistant right now. Please use the contact form below.", align: 'flex-start', bg: '#F1EEFB', color: '#171224' }], chatLoading: false }));
+    }
+  };
+  sendLeadEmail = async (lead) => {
+    try {
+      const resp = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'lead', ...lead })
+      });
+      if (resp.ok) this.setState({ leadSent: true });
+    } catch (err) { /* silent - lead capture is best-effort */ }
+  };
+
+  renderVals() {
+    return {
+      submitted: this.state.submitted,
+      notSubmitted: !this.state.submitted,
+      submitting: this.state.submitting,
+      submitError: this.state.submitError,
+      submitLabel: this.state.submitting ? 'Sending…' : 'Send message',
+      handleSubmit: this.handleSubmit,
+      productsOpen: this.state.productsOpen,
+      openProducts: this.openProducts,
+      closeProducts: this.closeProducts,
+      hoverBg: { background: 'rgba(255,255,255,0.06)' },
+      tanyaOpen: this.state.tanyaOpen,
+      toggleTanya: this.toggleTanya,
+      closeTanya: this.closeTanya,
+      chatMessages: this.state.chatMessages,
+      chatLoading: this.state.chatLoading,
+      chatInput: this.state.chatInput,
+      handleChatChange: this.handleChatChange,
+      sendChat: this.sendChat,
+      leadSent: this.state.leadSent
+    };
+  }
+}
+
+</script>
+</body>
+</html>
