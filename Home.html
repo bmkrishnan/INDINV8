@@ -141,43 +141,7 @@
     </div>
   </div>
 
-  <!-- CONTACT -->
-  <div id="contact" style="background:#0A0A12; padding:96px 56px; position:relative; overflow:hidden;">
-    <div style="position:absolute; bottom:-200px; right:-100px; width:600px; height:600px; border-radius:50%; background:radial-gradient(circle, rgba(139,92,246,0.2), transparent 70%);"></div>
-    <div style="max-width:1200px; margin:0 auto; display:flex; gap:80px; position:relative;">
-      <div style="flex:1;">
-        <div style="color:#A78BFA; font-size:13px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:14px;">Get in touch</div>
-        <h2 style="font-family:'Space Grotesk',sans-serif; font-size:38px; color:#fff; font-weight:600; margin:0 0 22px; line-height:1.25;">Let's build something resilient.</h2>
-        <p style="font-size:17px; line-height:1.75; color:rgba(255,255,255,0.6); margin:0 0 40px; max-width:440px;">For product briefings, pilot partnerships, investment conversations, AI advisory, or ecosystem collaboration — reach out and our team will get back to you.</p>
-        <div style="display:flex; flex-direction:column; gap:18px;">
-          <div style="color:rgba(255,255,255,0.75); font-size:15px;"><strong style="color:#fff;">Address</strong><br>192/3, Sakthi Nagar Main Road, Arumbakkam, Chennai 600 106, Tamil Nadu, India</div>
-          <div style="color:rgba(255,255,255,0.75); font-size:15px;"><strong style="color:#fff;">Phone</strong><br>+91 978 979 4149</div>
-          <div style="color:rgba(255,255,255,0.75); font-size:15px;"><strong style="color:#fff;">Email</strong><br>founders@innov8-labs.in</div>
-        </div>
-      </div>
-      <div style="flex:1; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:24px; padding:40px;">
-        <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
-          <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; min-height:340px; text-align:center;">
-            <div style="width:60px; height:60px; border-radius:50%; background:linear-gradient(135deg,#8B5CF6,#6D28D9); display:flex; align-items:center; justify-content:center; margin-bottom:20px; font-size:26px;">✓</div>
-            <div style="color:#fff; font-size:20px; font-weight:600; margin-bottom:8px;">Thank you!</div>
-            <div style="color:rgba(255,255,255,0.6); font-size:15px;">Your message has been sent. We'll be in touch shortly.</div>
-          </div>
-        </sc-if>
-        <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
-          <form onSubmit="{{ handleSubmit }}" style="display:flex; flex-direction:column; gap:18px;">
-            <input type="text" name="name" placeholder="Full name" required="{{ true }}" style="padding:15px 18px; border-radius:12px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:#fff; font-size:15px; font-family:'Poppins',sans-serif;" />
-            <input type="email" name="email" placeholder="Work email" required="{{ true }}" style="padding:15px 18px; border-radius:12px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:#fff; font-size:15px; font-family:'Poppins',sans-serif;" />
-            <input type="text" name="organisation" placeholder="Organisation" style="padding:15px 18px; border-radius:12px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:#fff; font-size:15px; font-family:'Poppins',sans-serif;" />
-            <textarea name="message" placeholder="How can we help?" rows="4" style="padding:15px 18px; border-radius:12px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:#fff; font-size:15px; font-family:'Poppins',sans-serif; resize:none;"></textarea>
-            <button type="submit" disabled="{{ submitting }}" style="padding:16px; border:none; border-radius:12px; background:linear-gradient(135deg,#8B5CF6,#6D28D9); color:#fff; font-size:15px; font-weight:600; cursor:pointer; font-family:'Poppins',sans-serif;">{{ submitLabel }}</button>
-            <sc-if value="{{ submitError }}" hint-placeholder-val="{{ false }}">
-              <div style="color:#FCA5A5; font-size:13px;">Couldn't send automatically — please email founders@innov8-labs.in directly.</div>
-            </sc-if>
-          </form>
-        </sc-if>
-      </div>
-    </div>
-  </div>
+  <x-import component-from-global-scope="Contact" from="./Contact.dc.html" hint-size="100%,520px"></x-import>
 
   <!-- FOOTER -->
   <div style="background:#0A0A12; border-top:1px solid rgba(255,255,255,0.08); padding:48px 56px 32px;">

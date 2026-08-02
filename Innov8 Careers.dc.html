@@ -152,6 +152,7 @@
             <input type="text" name="name" placeholder="Full name" required="{{ true }}" style="padding:15px 18px; border-radius:12px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:#fff; font-size:15px; font-family:'Poppins',sans-serif;" />
             <input type="email" name="email" placeholder="Email" required="{{ true }}" style="padding:15px 18px; border-radius:12px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:#fff; font-size:15px; font-family:'Poppins',sans-serif;" />
             <input type="text" name="organisation" placeholder="Role you're interested in" style="padding:15px 18px; border-radius:12px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:#fff; font-size:15px; font-family:'Poppins',sans-serif;" />
+            <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;" />
             <textarea name="message" placeholder="Tell us about yourself" rows="4" style="padding:15px 18px; border-radius:12px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:#fff; font-size:15px; font-family:'Poppins',sans-serif; resize:none;"></textarea>
             <button type="submit" disabled="{{ submitting }}" style="padding:16px; border:none; border-radius:12px; background:linear-gradient(135deg,#8B5CF6,#6D28D9); color:#fff; font-size:15px; font-weight:600; cursor:pointer; font-family:'Poppins',sans-serif;">{{ submitLabel }}</button>
             <sc-if value="{{ submitError }}" hint-placeholder-val="{{ false }}">
@@ -237,7 +238,8 @@ class Component extends DCLogic {
           name: fd.get('name'),
           email: fd.get('email'),
           organisation: fd.get('organisation'),
-          message: fd.get('message')
+          message: fd.get('message'),
+          website: fd.get('website')
         })
       });
       if (!resp.ok) throw new Error('send failed');
@@ -259,12 +261,13 @@ class Component extends DCLogic {
     const userMsg = { text: question, align: 'flex-end', bg: '#8B5CF6', color: '#fff' };
     this.setState(s => ({ chatMessages: [...s.chatMessages, userMsg], chatInput: '', chatLoading: true }));
     try {
-      const reply = await window.claude.complete({
-        model: 'claude-haiku-4-5',
-        max_tokens: 80,
-        system: this.TANYA_SYSTEM_PROMPT,
-        messages: [{ role: 'user', content: question }]
+      const apiResp = await fetch('/api/tanya-chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ system: this.TANYA_SYSTEM_PROMPT, message: question, maxTokens: 80 })
       });
+      if (!apiResp.ok) throw new Error('chat api failed');
+      const { reply } = await apiResp.json();
       const markerRe = /\[LEAD:(\w+)=([^\]]+)\]/g;
       let clean = reply, m, newLead = { ...this.state.leadInfo };
       while ((m = markerRe.exec(reply)) !== null) newLead[m[1]] = m[2].trim();
