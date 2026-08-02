@@ -16,9 +16,17 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { system, message, maxTokens } = req.body || {};
-    if (!message) {
-      res.status(400).json({ error: 'message is required' });
+    const { system, message, messages, maxTokens } = req.body || {};
+    let apiMessages;
+    if (Array.isArray(messages) && messages.length) {
+      apiMessages = messages
+        .filter((m) => m && m.content)
+        .slice(-16) // cap history so requests stay small
+        .map((m) => ({ role: m.role === 'assistant' ? 'assistant' : 'user', content: String(m.content).slice(0, 2000) }));
+    } else if (message) {
+      apiMessages = [{ role: 'user', content: String(message).slice(0, 2000) }];
+    } else {
+      res.status(400).json({ error: 'message or messages is required' });
       return;
     }
 
@@ -31,9 +39,9 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         model: 'claude-haiku-4-5',
-        max_tokens: maxTokens || 80,
+        max_tokens: maxTokens || 110,
         system: system || '',
-        messages: [{ role: 'user', content: message }]
+        messages: apiMessages
       })
     });
 
