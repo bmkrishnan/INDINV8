@@ -25,7 +25,7 @@
 
   <!-- NAV -->
   <div style="position:fixed; top:0; left:0; right:0; z-index:50; display:flex; align-items:center; justify-content:space-between; padding:22px 56px; background:rgba(10,10,18,0.85); backdrop-filter:blur(14px); border-bottom:1px solid rgba(255,255,255,0.08);">
-    <a href="Innov8 Homepage.dc.html" style="display:flex; align-items:center; gap:10px;">
+    <a href="Home.html" style="display:flex; align-items:center; gap:10px;">
       <img src="assets/innov8-logo.png" alt="Ind Innov8" style="height:30px; width:auto;" />
     </a>
     <div style="display:flex; align-items:center; gap:36px;">
@@ -53,30 +53,24 @@
       <a href="#contact" style="padding:11px 22px; background:linear-gradient(135deg,#8B5CF6,#6D28D9); border-radius:999px; color:#fff; font-size:14px; font-weight:600; box-shadow:0 4px 20px rgba(139,92,246,0.35);">Get in touch</a>
     </div>
   </div>
-  <div style="height:76px;"></div>
+  <div style="height:56px;"></div>
 
   <!-- HERO -->
-  <div style="position:relative; padding:96px 56px 120px; display:flex; align-items:center; justify-content:space-between; gap:60px; overflow:hidden;">
-    <div style="position:absolute; top:-160px; right:-140px; width:560px; height:560px; border-radius:50%; background:radial-gradient(circle at 30% 30%, rgba(139,92,246,0.35), rgba(139,92,246,0) 70%); filter:blur(10px); animation:pulseGlow 6s ease-in-out infinite;"></div>
-    <div style="position:absolute; bottom:-200px; left:10%; width:480px; height:480px; border-radius:50%; background:radial-gradient(circle at 50% 50%, rgba(109,40,217,0.28), rgba(109,40,217,0) 70%); filter:blur(20px);"></div>
-    <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px); background-size:64px 64px; mask-image:radial-gradient(ellipse 70% 60% at 50% 30%, black, transparent);"></div>
+  <div style="position:relative; padding:56px 56px 17px; overflow:hidden; background:linear-gradient(90deg, rgba(10,10,18,0.96) 0%, rgba(10,10,18,0.75) 45%, rgba(10,10,18,0.4) 100%), url('assets/hero-bg.jpg') right center/cover no-repeat;">
+    <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size:64px 64px; mask-image:radial-gradient(ellipse 70% 60% at 50% 30%, black, transparent); pointer-events:none;"></div>
 
-    <div style="position:relative; max-width:640px; z-index:2; animation:fadeUp 0.9s ease both;">
+    <div style="position:relative; max-width:760px; z-index:2; animation:fadeUp 0.9s ease both;">
       <div style="display:flex; align-items:center; gap:10px; margin-bottom:28px; flex-wrap:wrap;">
         <div style="display:inline-flex; align-items:center; gap:8px; padding:7px 16px; border-radius:999px; background:rgba(139,92,246,0.12); border:1px solid rgba(139,92,246,0.35); color:#C4B5FD; font-size:13px; font-weight:600;">
           <span style="width:7px; height:7px; border-radius:50%; background:#A78BFA;"></span> India's R&D & AI engineering hub for ASEAN
         </div>
       </div>
       <h1 style="font-family:'Space Grotesk',sans-serif; font-size:54px; line-height:1.1; font-weight:700; color:#fff; margin:0 0 26px; letter-spacing:-1px;">Research, engineering, and expertise — out of India, for ASEAN.</h1>
-      <p style="font-size:18px; line-height:1.65; color:rgba(255,255,255,0.65); margin:0 0 40px; max-width:560px;">Ind Innov8 is India's R&D and AI engineering hub — where applied research becomes shipped software, proven first in cyber security with Drillx, our cyber drill platform. We pair that depth with hands-on subject-matter expertise, helping enterprises across the ASEAN region plan and ship real AI adoption, not slide decks.</p>
+      <p style="font-size:18px; line-height:1.65; color:rgba(255,255,255,0.65); margin:0 0 40px; max-width:640px;">Ind Innov8 is India's R&D and AI engineering hub — where applied research becomes shipped software, proven first in cyber security with Drillx, our cyber drill platform. We pair that depth with hands-on subject-matter expertise, helping enterprises across the ASEAN region plan and ship real AI adoption, not slide decks.</p>
       <div style="display:flex; gap:16px;">
         <a href="#contact" style="padding:16px 30px; background:linear-gradient(135deg,#8B5CF6,#6D28D9); border-radius:12px; color:#fff; font-size:15px; font-weight:600; box-shadow:0 8px 30px rgba(139,92,246,0.4);">Talk to our team</a>
         <a href="Innov8 Services.dc.html" style="padding:16px 30px; border-radius:12px; border:1px solid rgba(255,255,255,0.18); color:#fff; font-size:15px; font-weight:600;">What we do</a>
       </div>
-    </div>
-
-    <div style="position:relative; z-index:2; width:420px; height:420px; flex-shrink:0; animation:fadeUp 1s ease 0.15s both; border-radius:28px; overflow:hidden;">
-      <image-slot id="hero-image" shape="rounded" radius="28" placeholder="Drop a hero image (1600x1200, India-ASEAN theme)"></image-slot>
     </div>
   </div>
 
@@ -280,12 +274,13 @@ class Component extends DCLogic {
     const userMsg = { text: question, align: 'flex-end', bg: '#8B5CF6', color: '#fff' };
     this.setState(s => ({ chatMessages: [...s.chatMessages, userMsg], chatInput: '', chatLoading: true }));
     try {
-      const reply = await window.claude.complete({
-        model: 'claude-haiku-4-5',
-        max_tokens: 80,
-        system: this.TANYA_SYSTEM_PROMPT,
-        messages: [{ role: 'user', content: question }]
+      const apiResp = await fetch('/api/tanya-chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ system: this.TANYA_SYSTEM_PROMPT, message: question, maxTokens: 80 })
       });
+      if (!apiResp.ok) throw new Error('chat api failed');
+      const { reply } = await apiResp.json();
       const markerRe = /\[LEAD:(\w+)=([^\]]+)\]/g;
       let clean = reply, m, newLead = { ...this.state.leadInfo };
       while ((m = markerRe.exec(reply)) !== null) newLead[m[1]] = m[2].trim();
